@@ -746,11 +746,13 @@ em.accent { font-size: 1.04em; }
   width: var(--container);
   margin-inline: auto;
   display: grid;
-  gap: var(--s-3);
-  justify-items: start;
+  grid-template-columns: minmax(0, 1fr) clamp(320px, 40vw, 560px);
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 4.5rem);
   z-index: 2;
 }
-.hero h1 { max-width: 12ch; }
+.hero-copy { display: grid; gap: var(--s-3); justify-items: start; min-width: 0; }
+.hero h1 { max-width: 15ch; font-size: clamp(2.8rem, 1.2rem + 5vw, 5.75rem); }
 .hero h1 .rotator {
   display: inline-grid;
   overflow: hidden;
@@ -784,18 +786,15 @@ em.accent { font-size: 1.04em; }
 }
 .hero-proof b { color: var(--ink); font-weight: 750; font-variant-numeric: tabular-nums; }
 
-/* Composición flotante de proyectos en el hero */
+/* Composición flotante de proyectos en el hero (columna derecha del grid) */
 .hero-stage {
-  position: absolute;
-  right: max(calc((100vw - var(--container)) / 2 - 2vw), 0.5rem);
-  top: 50%;
-  width: clamp(300px, 34vw, 560px);
-  aspect-ratio: 1 / 1.06;
-  /* -58% eleva ligeramente la composición para centrarla ópticamente en el hero;
-     var(--py) lo aporta el parallax y se compone aquí sin perder el centrado. */
-  transform: translateY(calc(-58% + var(--py, 0px)));
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  align-self: center;
+  transform: translateY(var(--py, 0px));
   z-index: 1;
-  perspective: 1400px;
+  perspective: 1500px;
   pointer-events: none;
 }
 .hero-stage .shot {
@@ -808,9 +807,10 @@ em.accent { font-size: 1.04em; }
   will-change: transform;
 }
 .hero-stage .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-.hero-stage .shot-a { width: 88%; aspect-ratio: 16/10.4; right: 0; top: -6%; transform: rotateY(-9deg) rotateX(4deg); }
-.hero-stage .shot-b { width: 62%; aspect-ratio: 16/10.4; left: -10%; top: 43%; transform: rotateY(7deg) rotateX(-3deg); }
-.hero-stage .shot-c { width: 26%; aspect-ratio: 9/19; right: 4%; top: 34%; border-radius: 22px; transform: rotateY(-14deg); z-index: 2; }
+/* Composición centrada verticalmente: las tres piezas caben dentro del cuadro */
+.hero-stage .shot-a { width: 86%; aspect-ratio: 16/10.4; right: 0; top: 6%; transform: rotateY(-9deg) rotateX(4deg); }
+.hero-stage .shot-b { width: 60%; aspect-ratio: 16/10.4; left: -6%; top: 46%; transform: rotateY(7deg) rotateX(-3deg); }
+.hero-stage .shot-c { width: 25%; aspect-ratio: 9/19; right: 3%; top: 40%; border-radius: 20px; transform: rotateY(-14deg); z-index: 2; }
 .hero-stage .shot .bar {
   height: 22px;
   display: flex;
@@ -1349,21 +1349,9 @@ em.accent { font-size: 1.04em; }
 .marquee-xl .mq-item em { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--ink-mute); }
 .marquee-xl .mq-item::after { color: var(--line-strong); }
 
-/* Muro de testimonios en columnas (masonry) — longitudes variables encajan solas */
-.t-masonry {
-  columns: 3 300px;
-  column-gap: clamp(1rem, 1.6vw, 1.4rem);
-  margin-top: var(--s-3);
-}
-.t-masonry .t-card {
-  width: 100%;
-  margin: 0 0 clamp(1rem, 1.6vw, 1.4rem);
-  break-inside: avoid;
-  -webkit-column-break-inside: avoid;
-}
 .t-card {
   flex: none;
-  width: min(420px, 82vw);
+  width: min(400px, 82vw);
   padding: 1.7rem 1.8rem;
   border-radius: var(--r-m);
   border: 1px solid var(--line);
@@ -1375,6 +1363,16 @@ em.accent { font-size: 1.04em; }
   gap: 1.1rem;
   white-space: normal;
   transition: transform 0.5s var(--ease-out), box-shadow 0.5s;
+}
+/* En el marquee todas las tarjetas comparten alto; el texto largo se recorta */
+.t-marquee .marquee-track { align-items: stretch; gap: 1.1rem; padding-inline-end: 1.1rem; }
+.t-marquee .t-card { grid-template-rows: 1fr auto; height: 100%; }
+.t-marquee .t-card blockquote {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .t-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-m); }
 .t-card blockquote {
@@ -2301,17 +2299,18 @@ em.accent { font-size: 1.04em; }
   .about-photo { position: static; max-width: 420px; }
   .footer-main { grid-template-columns: 1fr 1fr; }
   .hero { min-height: auto; padding-bottom: var(--s-4); }
+  .hero-inner { grid-template-columns: 1fr; gap: var(--s-2); }
   .hero-stage {
-    position: relative;
-    right: auto; top: auto;
     transform: none;
     width: 100%;
-    max-width: 560px;
-    height: 380px;
-    aspect-ratio: auto;
-    margin-top: var(--s-2);
+    max-width: 520px;
+    aspect-ratio: 16 / 11;
+    margin: var(--s-2) auto 0;
     opacity: 1;
   }
+  .hero-stage .shot-a { top: 2%; }
+  .hero-stage .shot-b { top: 44%; }
+  .hero-stage .shot-c { top: 30%; }
   .social-cards { grid-template-columns: 1fr; }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .stat { border-inline-start: none; border-top: 1px solid var(--line); }
@@ -2322,8 +2321,8 @@ em.accent { font-size: 1.04em; }
 @media (max-width: 640px) {
   .grid-2, .grid-3, .form-row, .work-grid, .blog-grid, .contact-aside { grid-template-columns: 1fr; }
   .bento-cell, .bento-cell.is-wide { grid-column: span 12; min-height: 260px; }
-  .hero h1 { font-size: clamp(2.7rem, 13vw, 4rem); }
-  .hero-stage { height: 300px; }
+  .hero h1 { font-size: clamp(2.7rem, 12vw, 4rem); max-width: 18ch; }
+  .hero-stage { aspect-ratio: 4 / 3; }
   .hero-scroll-hint { display: none; }
   .svc-head { grid-template-columns: 1fr auto; column-gap: 0.75rem; }
   .svc-head .idx { display: none; }
@@ -2448,3 +2447,48 @@ em.accent { font-size: 1.04em; }
   color: var(--ink-mute);
 }
 .brand-showcase .brand-tagline .sep { width: 1px; height: 1.1em; background: currentColor; opacity: 0.45; }
+
+/* ---------- 22 · BANNER DE COOKIES / ANALÍTICA ---------- */
+.cookie-banner {
+  position: fixed;
+  left: clamp(1rem, 2.5vw, 1.75rem);
+  bottom: clamp(1rem, 2.5vw, 1.75rem);
+  z-index: 900;
+  width: min(400px, calc(100vw - 2rem));
+  padding: 1.25rem 1.4rem;
+  display: grid;
+  gap: 1rem;
+  border-radius: var(--r-m);
+  border: 1px solid var(--line);
+  background: var(--glass-strong);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  box-shadow: var(--shadow-l);
+  transform: translateY(160%);
+  opacity: 0;
+  transition: transform 0.6s var(--ease-spring), opacity 0.4s var(--ease-out);
+}
+.cookie-banner.is-visible { transform: none; opacity: 1; }
+.cookie-banner .ck-body strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.3rem;
+}
+.cookie-banner .ck-body p { font-size: 0.85rem; line-height: 1.5; color: var(--ink-mute); }
+.cookie-banner .ck-body a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+.cookie-banner .ck-actions { display: flex; gap: 0.6rem; justify-content: flex-end; }
+.cookie-banner .ck-actions .btn { flex: 0 0 auto; }
+
+/* En móvil ocupa casi todo el ancho; el botón de WhatsApp sube para no solaparse */
+@media (max-width: 560px) {
+  .cookie-banner { left: 1rem; right: 1rem; width: auto; }
+  .cookie-banner .ck-actions .btn { flex: 1; }
+  body.cookie-open .wa-float { transform: translateY(-152px); }
+  body.cookie-open .wa-float:hover { transform: translateY(-152px) scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookie-banner { transition: opacity 0.3s; transform: none; }
+}

@@ -1,5 +1,5 @@
 /* Formulario de contacto: validación estricta en vivo, sanitizado y envío
-   AJAX a FormSubmit hacia aleksstefanov05@gmail.com. */
+   AJAX a FormSubmit hacia el correo definido en el action del formulario. */
 
 const RULES = {
   name: {
@@ -115,8 +115,12 @@ export function initForm() {
     btn.disabled = true;
     globalErr && (globalErr.hidden = true);
 
+    // El destino se deriva del action del formulario (FormSubmit → variante AJAX)
+    const action = form.getAttribute('action') || 'https://formsubmit.co/aaswebmarketing@gmail.com';
+    const endpoint = action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+
     try {
-      const res = await fetch('https://formsubmit.co/ajax/aleksstefanov05@gmail.com', {
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(payload),

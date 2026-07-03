@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.aaswebmarketing.com/sitemap.xml
+Sitemap: https://aasmarketing.com/sitemap.xml

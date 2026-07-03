@@ -37,24 +37,17 @@ El logotipo se renderiza como **máscara CSS con `currentColor`**, por lo que se
 adapta solo a los modos claro y oscuro sin duplicar archivos. La intro de carga
 reconstruye el logotipo AAS con partículas (Path2D del mismo trazado).
 
-## Antes de publicar — 3 pasos obligatorios
+## Configuración actual
 
-1. **Dominio.** El dominio provisional `https://www.aaswebmarketing.com` está en
-   canonicals, Open Graph, JSON-LD, `sitemap.xml` y `robots.txt`. Sustitúyelo por
-   el definitivo:
-   `grep -rl "aaswebmarketing.com" . | xargs sed -i 's|www.aaswebmarketing.com|TUDOMINIO.com|g'`
-
-2. **Formulario.** El envío usa [FormSubmit](https://formsubmit.co) hacia
-   `aleksstefanov05@gmail.com`. El **primer envío** desde el dominio publicado
-   dispara un correo de confirmación de FormSubmit: pulsa “Activate” una única
-   vez y, a partir de ahí, todos los mensajes llegan al correo.
-
-3. **Datos legales.** En `aviso-legal/` y `privacidad/` hay campos
-   `[completar: …]` con el nombre y NIF del titular. Por la LSSI-CE (Ley
-   34/2002), un sitio operado bajo el nombre comercial *AAS Marketing* debe
-   identificar a la persona/entidad responsable: complétalos antes de publicar.
-   *(La agencia es la imagen pública; estos datos identificativos solo aparecen
-   en el pie legal, como exige la ley.)*
+- **Dominio:** `https://aasmarketing.com` (en canonicals, Open Graph, JSON-LD,
+  `sitemap.xml` y `robots.txt`). Si cambia, sustitúyelo en todo el proyecto:
+  `grep -rl "aasmarketing.com" . | xargs sed -i 's|aasmarketing.com|TUDOMINIO.com|g'`
+- **Correo:** el formulario envía por [FormSubmit](https://formsubmit.co) a
+  `aaswebmarketing@gmail.com`. El **primer envío** desde el dominio publicado
+  dispara un correo de confirmación de FormSubmit: pulsa “Activate” una vez.
+- **Datos legales** (aviso legal, privacidad): titular *Aleksandar Metodiev
+  Stefanov*, NIF *X4294288G*, domicilio en Collado Villalba (Madrid). Nombre
+  comercial: *AAS Marketing*.
 
 ## Despliegue en Vercel
 
@@ -63,20 +56,23 @@ estático** (framework preset: *Other*, sin comando de build, output = raíz).
 El `vercel.json` incluido activa `cleanUrls`, `trailingSlash`, cabeceras de
 seguridad y cache larga (`immutable`) para `assets/`.
 
+**Analítica:** activa **Web Analytics** y **Speed Insights** en el panel de
+Vercel (pestaña *Analytics* / *Speed Insights* del proyecto). El sitio carga
+`/_vercel/insights/script.js` y `/_vercel/speed-insights/script.js`
+**solo tras el consentimiento** del banner de cookies (localStorage
+`aas_cookie_consent`). Es analítica anónima y sin cookies de rastreo.
+
 ## Contenido pendiente (placeholders)
 
-- **Instagram**: la sección enlaza a
-  [@aas_webmarketing](https://www.instagram.com/aas_webmarketing/). Las 4
-  tarjetas son huecos preparados para capturas de publicaciones reales
-  (busca `ph-media` en `index.html`).
-- **Testimonios**: los actuales son provisionales pero realistas. Reemplázalos
-  por reales en `assets/js/../` → los datos están en el generador; en el HTML
-  publicado, en la sección de testimonios de `index.html`.
-- **Portadas del blog**: placeholders `ph-media` en `blog/`.
+- **Instagram / TikTok**: la sección de redes enlaza a
+  [@aas_webmarketing](https://www.instagram.com/aas_webmarketing/) y a
+  [TikTok](https://www.tiktok.com/@aas_webmarketing). Son tarjetas de “seguir”,
+  no requieren contenido adicional.
+- **Portadas del blog**: placeholders `ph-media` en `blog/` (el blog está
+  marcado `noindex` hasta que haya artículos).
 
-> La web es de la **agencia**: no incluye fotos ni datos personales del fundador
-> en el contenido visible. Si en el futuro quieres una sección de equipo, los
-> componentes de foto (`ph-media`) están listos para reutilizarse.
+> La web es de la **agencia**: los datos personales del titular solo aparecen
+> en el pie legal, como exige la LSSI-CE, no en el contenido visible.
 
 ## Capturas del portfolio
 
@@ -91,9 +87,10 @@ archivos manteniendo los nombres: `<slug>.webp`, `<slug>-tall.webp`,
 - **Tema claro/oscuro** con View Transitions API (revelado circular desde el
   interruptor) y respeto de `prefers-color-scheme`. Sin parpadeo: el tema se
   aplica inline en `<head>` antes del CSS. Claves de almacenamiento: `aas_theme`,
-  `aas_intro_seen` (solo `localStorage`/`sessionStorage`, sin cookies de rastreo).
+  `aas_intro_seen`, `aas_cookie_consent` (solo `localStorage`/`sessionStorage`,
+  sin cookies de rastreo).
 - **Motion**: intro de partículas que reconstruye el logotipo AAS (solo la
-  primera visita de la sesión), cursor con estela en canvas, scroll suavizado,
+  primera visita de la sesión), cursor con estela en canvas, scroll nativo,
   reveals enmascarados por palabra, tarjetas 3D con brillo, marquees, contadores
   y kinetic typography en el menú. **Todo se desactiva con
   `prefers-reduced-motion`** y en pantallas táctiles lo que no aplica.

@@ -11,6 +11,7 @@ import { initRotator } from './modules/rotator.js';
 import { initHeroCanvas } from './modules/heroCanvas.js';
 import { initForm } from './modules/form.js';
 import { initMisc } from './modules/misc.js';
+import { initConsent } from './modules/consent.js';
 
 initLoader();
 initTheme();
@@ -23,3 +24,4 @@ initRotator();
 initHeroCanvas();
 initForm();
 initMisc();
+initConsent();
