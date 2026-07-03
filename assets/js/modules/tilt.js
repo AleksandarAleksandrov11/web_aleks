@@ -23,12 +23,18 @@ export function initTilt() {
 
   document.querySelectorAll('[data-tilt]').forEach((el) => {
     const strength = parseFloat(el.dataset.tilt || '7');
+    // Algunos elementos (las capturas del hero) tienen una inclinación de
+    // reposo fija vía --base-rx/--base-ry; el resto la tiene en 0 y esto
+    // no cambia nada para ellos.
+    const cs = getComputedStyle(el);
+    const baseRX = parseFloat(cs.getPropertyValue('--base-rx')) || 0;
+    const baseRY = parseFloat(cs.getPropertyValue('--base-ry')) || 0;
     let trx = 0, tryy = 0, crx = 0, cry = 0, raf = null, hovering = false;
 
     const tick = () => {
       crx = lerp(crx, trx, 0.12);
       cry = lerp(cry, tryy, 0.12);
-      el.style.transform = `perspective(1100px) rotateX(${crx.toFixed(3)}deg) rotateY(${cry.toFixed(3)}deg) ${hovering ? 'scale(1.012)' : ''}`;
+      el.style.transform = `perspective(1100px) rotateX(${(baseRX + crx).toFixed(3)}deg) rotateY(${(baseRY + cry).toFixed(3)}deg) ${hovering ? 'scale(1.012)' : ''}`;
       if (hovering || Math.abs(crx) > 0.05 || Math.abs(cry) > 0.05) raf = requestAnimationFrame(tick);
       else { el.style.transform = ''; raf = null; }
     };
