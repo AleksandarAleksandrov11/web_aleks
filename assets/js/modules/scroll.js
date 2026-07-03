@@ -1,0 +1,92 @@
+/* Scroll: suavizado tipo Lenis (solo rueda), parallax, estado del header,
+   botón flotante de WhatsApp y progreso de la línea del proceso. */
+import { lerp, clamp, ticker, prefersReduced, isFinePointer } from './utils.js';
+
+export function initScroll() {
+  const nav = document.querySelector('.nav');
+  const wa = document.querySelector('.wa-float');
+  const parallaxEls = [...document.querySelectorAll('[data-parallax]')];
+  const steps = document.querySelector('.steps');
+
+  /* --- Rueda suavizada (progresivo: nunca rompe teclado, anclas ni barra) --- */
+  if (!prefersReduced && isFinePointer) {
+    let target = window.scrollY;
+    let current = window.scrollY;
+    let animating = false;
+
+    const max = () => document.documentElement.scrollHeight - innerHeight;
+
+    window.addEventListener('wheel', (e) => {
+      if (e.ctrlKey || e.defaultPrevented) return;
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      if (e.target.closest('textarea, [data-native-scroll], .mobile-menu')) return;
+      e.preventDefault();
+      const d = e.deltaMode === 1 ? e.deltaY * 32 : e.deltaY;
+      if (!animating) { target = current = window.scrollY; }
+      target = clamp(target + d, 0, max());
+      animating = true;
+    }, { passive: false });
+
+    ticker.add(() => {
+      if (!animating) return;
+      // Si otro mecanismo movió el scroll (teclado, ancla), cede el control
+      if (Math.abs(window.scrollY - current) > 1.5) { animating = false; return; }
+      current = lerp(current, target, 0.115);
+      if (Math.abs(target - current) < 0.4) { current = target; animating = false; }
+      window.scrollTo(0, current);
+    });
+  }
+
+  /* --- Estados ligados al scroll (un solo listener pasivo) --- */
+  let lastY = window.scrollY;
+  let ticking = false;
+
+  function onScroll() {
+    const y = window.scrollY;
+    if (nav) {
+      nav.classList.toggle('is-scrolled', y > 24);
+      const goingDown = y > lastY + 6 && y > 500;
+      const goingUp = y < lastY - 4;
+      if (goingDown) nav.classList.add('is-hidden');
+      else if (goingUp || y < 500) nav.classList.remove('is-hidden');
+    }
+    wa?.classList.toggle('is-on', y > 420);
+    lastY = y;
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
+  }, { passive: true });
+  onScroll();
+  // La pista de WhatsApp también aparece pronto en páginas cortas
+  if (wa && document.documentElement.scrollHeight <= innerHeight * 1.4) wa.classList.add('is-on');
+
+  /* --- Parallax sutil --- */
+  if (!prefersReduced && parallaxEls.length) {
+    ticker.add(() => {
+      const vh = innerHeight;
+      for (const el of parallaxEls) {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < -80 || r.top > vh + 80) continue;
+        const center = (r.top + r.height / 2 - vh / 2) / vh; // -0.5 … 0.5 aprox
+        const speed = parseFloat(el.dataset.parallax || '0.1');
+        el.style.transform = `translate3d(0, ${(-center * speed * 100).toFixed(2)}px, 0)`;
+      }
+    });
+  }
+
+  /* --- Progreso de la línea del proceso --- */
+  if (steps) {
+    const items = [...steps.querySelectorAll('.step')];
+    ticker.add(() => {
+      const r = steps.getBoundingClientRect();
+      const total = r.height - innerHeight * 0.5;
+      const p = clamp((innerHeight * 0.6 - r.top) / Math.max(total, 1), 0, 1);
+      steps.style.setProperty('--p', p.toFixed(4));
+      for (const it of items) {
+        const ir = it.getBoundingClientRect();
+        it.classList.toggle('is-active', ir.top < innerHeight * 0.6 && ir.bottom > innerHeight * 0.25);
+      }
+    });
+  }
+}
