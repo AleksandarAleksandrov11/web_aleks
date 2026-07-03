@@ -2492,3 +2492,94 @@ em.accent { font-size: 1.04em; }
 @media (prefers-reduced-motion: reduce) {
   .cookie-banner { transition: opacity 0.3s; transform: none; }
 }
+
+/* ---------- 23 · POPUP DE TESTIMONIO ---------- */
+.t-card[role="button"] { cursor: pointer; }
+.t-card[role="button"]:hover { transform: translateY(-4px); box-shadow: var(--shadow-m); }
+.t-card[role="button"]:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.t-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 2.5rem);
+}
+.t-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--inverse-bg) 42%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+}
+.t-modal.is-open .t-modal-backdrop { opacity: 1; }
+.t-modal-card {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: min(80vh, 640px);
+  overflow: auto;
+  margin: 0;
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  display: grid;
+  gap: 1.25rem;
+  border-radius: var(--r-l);
+  border: 1px solid var(--line);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-l);
+  opacity: 0;
+  transform: translateY(18px) scale(0.96);
+  transition: opacity 0.45s var(--ease-out), transform 0.55s var(--ease-spring);
+}
+.t-modal.is-open .t-modal-card { opacity: 1; transform: none; }
+.t-modal-card .stars { color: var(--ink); font-size: 0.8rem; letter-spacing: 3px; }
+.t-modal-card .tm-quote {
+  font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+  line-height: 1.55;
+  letter-spacing: -0.015em;
+  color: var(--ink-soft);
+}
+.t-modal-card .tm-quote::before {
+  content: "“";
+  font-family: var(--font-serif);
+  font-size: 1.5em;
+  line-height: 0;
+  vertical-align: -0.3em;
+  color: var(--ink-faint);
+  margin-right: 3px;
+}
+.t-modal-card figcaption { display: flex; align-items: center; gap: 0.9rem; }
+.t-modal-card .avatar {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--bg);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex: none;
+}
+.t-modal-card figcaption strong { display: block; color: var(--ink); font-weight: 650; }
+.t-modal-card figcaption .tm-role { font-size: 0.85rem; color: var(--ink-mute); }
+.t-modal-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  width: 38px; height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+  background: var(--bg);
+  transition: background 0.3s, color 0.3s, transform 0.3s var(--ease-spring);
+}
+.t-modal-close svg { width: 14px; height: 14px; }
+.t-modal-close:hover { background: var(--ink); color: var(--bg); transform: rotate(90deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .t-modal-card { transition: opacity 0.2s; transform: none; }
+  .t-modal-close:hover { transform: none; }
+}
