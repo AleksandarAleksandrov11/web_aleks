@@ -103,10 +103,10 @@ export function initForm() {
     const payload = {
       Nombre: sanitize(fields.name.input.value),
       Email: sanitize(fields.email.input.value),
-      'Teléfono': sanitize(fields.phone?.input.value || '—'),
+      'Teléfono': sanitize(fields.phone?.input.value || 'Sin especificar'),
       Servicios: services.join(', ') || 'Sin especificar',
       Mensaje: sanitize(fields.message.input.value),
-      _subject: `Nueva solicitud de presupuesto — ${sanitize(fields.name.input.value)}`,
+      _subject: `Nueva solicitud de presupuesto de ${sanitize(fields.name.input.value)}`,
       _template: 'table',
       _captcha: 'false',
     };
@@ -134,5 +134,22 @@ export function initForm() {
       btn.classList.remove('is-busy');
       btn.disabled = false;
     }
+  });
+
+  /* Tras enviar, permite volver a rellenar el formulario desde cero */
+  form.querySelector('[data-send-another]')?.addEventListener('click', () => {
+    form.reset();
+    Object.values(fields).forEach((f) => {
+      f.touched = false;
+      f.wrap.classList.remove('is-valid', 'is-invalid');
+      f.input.removeAttribute('aria-invalid');
+      const err = f.wrap.querySelector('.field-err');
+      if (err) err.textContent = '';
+    });
+    if (msgCount) msgCount.textContent = '0 / 1200';
+    if (consent) consent.closest('.consent').style.color = '';
+    globalErr && (globalErr.hidden = true);
+    form.classList.remove('is-sent');
+    fields.name?.input.focus();
   });
 }

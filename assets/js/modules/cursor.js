@@ -1,6 +1,9 @@
-/* Cursor personalizado: punto + anillo con retardo + estela dibujada en canvas.
-   Solo en punteros finos y sin reduced-motion. */
-import { lerp, ticker, prefersReduced, isFinePointer } from './utils.js';
+/* Cursor personalizado: punto + anillo con retardo y, en equipos con
+   margen de sobra, una estela dibujada en canvas. Solo en punteros finos
+   y sin reduced-motion. La estela (un canvas a pantalla completa que se
+   redibuja cada frame durante toda la sesión) es el efecto más costoso de
+   la web: en equipos modestos se omite y se conserva el punto + anillo. */
+import { lerp, ticker, prefersReduced, isFinePointer, isLowPower } from './utils.js';
 
 export function initCursor() {
   if (!isFinePointer || prefersReduced) return;
@@ -12,22 +15,29 @@ export function initCursor() {
   const ring = document.createElement('div');
   ring.className = 'cursor-ring';
   ring.innerHTML = '<span class="cursor-label" aria-hidden="true"></span>';
-  const canvas = document.createElement('canvas');
-  canvas.className = 'cursor-canvas';
-  canvas.setAttribute('aria-hidden', 'true');
-  document.body.append(canvas, ring, dot);
 
-  const ctx = canvas.getContext('2d');
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  function size() {
-    canvas.width = innerWidth * dpr;
-    canvas.height = innerHeight * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
+  const withTrail = !isLowPower;
+  let canvas, ctx;
+  if (withTrail) {
+    canvas = document.createElement('canvas');
+    canvas.className = 'cursor-canvas';
+    canvas.setAttribute('aria-hidden', 'true');
+    document.body.append(canvas, ring, dot);
+
+    ctx = canvas.getContext('2d');
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const size = () => {
+      canvas.width = innerWidth * dpr;
+      canvas.height = innerHeight * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+    };
+    size();
+    window.addEventListener('resize', size, { passive: true });
+  } else {
+    document.body.append(ring, dot);
   }
-  size();
-  window.addEventListener('resize', size, { passive: true });
 
   const label = ring.querySelector('.cursor-label');
   let mx = innerWidth / 2, my = innerHeight / 2;
@@ -67,6 +77,7 @@ export function initCursor() {
     ry = lerp(ry, my, 0.16);
     dot.style.transform = `translate(${mx}px, ${my}px) ${document.body.classList.contains('cursor-link') ? 'scale(0.5)' : ''}`;
     ring.style.transform = `translate(${rx}px, ${ry}px)`;
+    if (!withTrail) return;
 
     // Estela: polilínea con desvanecimiento
     trail.push({ x: mx, y: my });

@@ -53,9 +53,22 @@ export function initReveal() {
     return;
   }
 
+  /* Promueve a su propia capa SOLO mientras dura la transición (~1,2 s como
+     mucho, según el retardo escalonado). Son animaciones de un solo uso: no
+     tiene sentido dejar la capa reservada para siempre en cada bloque. */
+  function promote(target) {
+    const els = target.matches('[data-reveal]') ? [target]
+      : target.matches('[data-reveal-group]') ? [...target.children]
+      : target.matches('[data-split]') ? [...target.querySelectorAll('.wi')]
+      : [];
+    els.forEach((el) => { el.style.willChange = 'opacity, transform, filter'; });
+    setTimeout(() => els.forEach((el) => { el.style.willChange = ''; }), 1300);
+  }
+
   const io = new IntersectionObserver((entries) => {
     for (const e of entries) {
       if (!e.isIntersecting) continue;
+      promote(e.target);
       e.target.classList.add('is-in');
       io.unobserve(e.target);
     }

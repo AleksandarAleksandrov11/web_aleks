@@ -1,10 +1,16 @@
-/* Rotador de palabras del hero (kinetic typography con máscara). */
+/* Rotador de palabras del hero (kinetic typography con máscara).
+   El HTML servido solo lleva la primera palabra como texto real (limpio
+   para SEO y accesible vía aria-label en el H1); las demás palabras del
+   ciclo se generan aquí en tiempo de ejecución. */
 import { prefersReduced } from './utils.js';
 
 export function initRotator() {
-  document.querySelectorAll('.rotator').forEach((rot) => {
+  document.querySelectorAll('.rotator[data-words]').forEach((rot) => {
+    const list = rot.dataset.words.split(',').map((w) => w.trim()).filter(Boolean);
+    if (list.length < 2) return;
+    rot.innerHTML = list.map((w) => `<span>${w}</span>`).join('');
+
     const words = [...rot.querySelectorAll('span')];
-    if (words.length < 2) return;
     let i = 0;
     words[0].classList.add('is-in');
     if (prefersReduced) return;

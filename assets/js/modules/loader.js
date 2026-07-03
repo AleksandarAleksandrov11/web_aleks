@@ -1,6 +1,6 @@
 /* Intro de carga: esfera de partículas → morfosis al wordmark → dispersión.
    Primera visita: secuencia completa. Visitas siguientes: cortina breve. */
-import { prefersReduced } from './utils.js';
+import { prefersReduced, isLowPower } from './utils.js';
 
 const SEEN_KEY = 'aas_intro_seen';
 
@@ -34,7 +34,7 @@ export function initLoader() {
   const counter = loader.querySelector('.loader-count b');
   const bar = loader.querySelector('.loader-bar i');
   const ctx = canvas.getContext('2d');
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const dpr = Math.min(window.devicePixelRatio || 1, isLowPower ? 1.5 : 2);
 
   let W, H, CX, CY;
   function size() {
@@ -49,8 +49,9 @@ export function initLoader() {
   const dark = document.documentElement.dataset.theme === 'dark';
   const inkColor = dark ? '244,244,242' : '12,12,13';
 
-  /* Partículas sobre una esfera (espiral de Fibonacci) */
-  const N = 620;
+  /* Partículas sobre una esfera (espiral de Fibonacci); menos en equipos
+     modestos para aligerar el trabajo por frame sin perder la forma. */
+  const N = isLowPower ? 260 : 620;
   const R = Math.min(W, H) * 0.21;
   const parts = [];
   const GA = Math.PI * (3 - Math.sqrt(5));

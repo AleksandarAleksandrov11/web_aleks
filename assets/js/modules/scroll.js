@@ -1,13 +1,57 @@
-/* Scroll: parallax, estado del header, botón flotante de WhatsApp
-   y progreso de la línea del proceso. Usa el scroll nativo del navegador
-   (fiable en todos los dispositivos); el resto del motion no depende de él. */
-import { clamp, ticker, prefersReduced } from './utils.js';
+/* Scroll: suavizado de rueda (solo puntero fino), parallax, estado del
+   header, botón flotante de WhatsApp y progreso de la línea del proceso. */
+import { clamp, lerp, ticker, prefersReduced, isFinePointer } from './utils.js';
 
 export function initScroll() {
   const nav = document.querySelector('.nav');
   const wa = document.querySelector('.wa-float');
   const parallaxEls = [...document.querySelectorAll('[data-parallax]')];
   const steps = document.querySelector('.steps');
+
+  /* --- Rueda suavizada ---
+     Modelo propio (target/current) que solo se anima mientras hace falta
+     (rAF autogestionado, no depende del ticker compartido). Nunca compara
+     contra window.scrollY frame a frame (eso causaba el bug anterior: el
+     redondeo de scrollTo desincronizaba `current` y el suavizado se
+     detenía casi al instante). En su lugar, seguimos nuestro propio
+     modelo y solo lo resincronizamos si detectamos un salto externo grande
+     (teclado, barra de scroll, anclas). */
+  if (!prefersReduced && isFinePointer) {
+    const max = () => document.documentElement.scrollHeight - innerHeight;
+    let target = window.scrollY;
+    let current = target;
+    let expected = target;
+    let raf = null;
+
+    function frame() {
+      current = lerp(current, target, 0.14);
+      if (Math.abs(target - current) < 0.4) current = target;
+      expected = Math.round(current);
+      // behavior:'instant' es imprescindible: sin él, el scroll-behavior:smooth
+      // del <html> reinterpreta cada llamada como una animación nativa propia,
+      // que se reinicia en cada frame y apenas deja avanzar el scroll real.
+      window.scrollTo({ top: expected, left: 0, behavior: 'instant' });
+      raf = current === target ? null : requestAnimationFrame(frame);
+    }
+
+    window.addEventListener('wheel', (e) => {
+      if (e.ctrlKey || e.defaultPrevented) return;
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      if (e.target.closest?.('textarea, select, [data-native-scroll], .mobile-menu, .t-modal-card, .cookie-banner')) return;
+      e.preventDefault();
+      const d = e.deltaMode === 1 ? e.deltaY * 34 : e.deltaMode === 2 ? e.deltaY * innerHeight : e.deltaY;
+      target = clamp(target + d, 0, max());
+      if (!raf) raf = requestAnimationFrame(frame);
+    }, { passive: false });
+
+    // Teclado, barra de scroll o anclas: si el salto real no coincide con lo
+    // que esperábamos, cedemos el control y partimos de la posición real.
+    window.addEventListener('scroll', () => {
+      if (Math.abs(window.scrollY - expected) > 40) {
+        target = current = expected = window.scrollY;
+      }
+    }, { passive: true });
+  }
 
   /* --- Estados ligados al scroll (un solo listener pasivo) --- */
   let lastY = window.scrollY;

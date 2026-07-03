@@ -1,15 +1,17 @@
 /* Campo de puntos interactivo del hero: una retícula serena que respira
-   y se aparta suavemente del cursor. Se pausa fuera de pantalla. */
-import { ticker, prefersReduced, cssVar } from './utils.js';
+   y se aparta suavemente del cursor. Se pausa fuera de pantalla y, en
+   equipos modestos, usa una retícula más espaciada (menos puntos, menos
+   trabajo por frame) en vez de desaparecer del todo. */
+import { ticker, prefersReduced, isLowPower } from './utils.js';
 
 export function initHeroCanvas() {
   const canvas = document.querySelector('.hero-canvas');
   if (!canvas || prefersReduced) return;
 
   const ctx = canvas.getContext('2d');
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const dpr = Math.min(window.devicePixelRatio || 1, isLowPower ? 1.5 : 2);
   let W, H, dots = [];
-  const GAP = 34;
+  const GAP = isLowPower ? 52 : 34;
 
   function build() {
     W = canvas.clientWidth; H = canvas.clientHeight;

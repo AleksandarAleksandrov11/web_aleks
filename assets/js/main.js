@@ -12,6 +12,7 @@ import { initHeroCanvas } from './modules/heroCanvas.js';
 import { initForm } from './modules/form.js';
 import { initMisc } from './modules/misc.js';
 import { initConsent } from './modules/consent.js';
+import { initMarqueeClones } from './modules/marqueeClone.js';
 import { initTestimonials } from './modules/testimonials.js';
 
 initLoader();
@@ -26,4 +27,5 @@ initHeroCanvas();
 initForm();
 initMisc();
 initConsent();
+initMarqueeClones();
 initTestimonials();

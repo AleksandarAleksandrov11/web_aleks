@@ -1963,6 +1963,7 @@ em.accent { font-size: 1.04em; }
 }
 .form.is-sent .check svg path { animation: draw-check 0.7s var(--ease-out) 0.35s forwards; }
 @keyframes draw-check { to { stroke-dashoffset: 0; } }
+.form-success [data-send-another] { margin-top: 0.4rem; }
 
 /* Panel lateral de contacto */
 .contact-aside { display: grid; gap: 1.1rem; position: sticky; top: calc(var(--nav-h) + 24px); }
@@ -2213,14 +2214,16 @@ em.accent { font-size: 1.04em; }
 .mid-cta .cta-buttons { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
 /* ---------- 19 · REVEALS + MOTION ---------- */
-/* Reveal genérico al hacer scroll */
+/* Reveal genérico al hacer scroll. El will-change se aplica solo mientras
+   dura la transición (lo gestiona reveal.js): son animaciones de un solo
+   uso, y dejar la capa promovida para siempre en cada bloque de la página
+   es memoria de GPU malgastada, sobre todo en equipos modestos. */
 .js [data-reveal] {
   opacity: 0;
   transform: translateY(26px);
   filter: blur(5px);
   transition: opacity 0.9s var(--ease-out), transform 1s var(--ease-out), filter 0.8s var(--ease-out);
   transition-delay: var(--rd, 0s);
-  will-change: opacity, transform, filter;
 }
 .js [data-reveal].is-in { opacity: 1; transform: none; filter: none; }
 .js [data-reveal="fade"] { transform: none; }
@@ -2233,7 +2236,6 @@ em.accent { font-size: 1.04em; }
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.8s var(--ease-out), transform 0.9s var(--ease-out);
-  will-change: opacity, transform;
 }
 .js [data-reveal-group].is-in > * { opacity: 1; transform: none; }
 .js [data-reveal-group].is-in > *:nth-child(1) { transition-delay: 0.05s; }
@@ -2252,7 +2254,6 @@ em.accent { font-size: 1.04em; }
   transform: translateY(115%) rotate(1.5deg);
   transition: transform 1s var(--ease-out);
   transition-delay: calc(var(--wi, 0) * 0.045s + var(--rd, 0s));
-  will-change: transform;
 }
 .js [data-split].is-in .wi { transform: none; }
 
@@ -2449,6 +2450,7 @@ em.accent { font-size: 1.04em; }
 .brand-showcase .brand-tagline .sep { width: 1px; height: 1.1em; background: currentColor; opacity: 0.45; }
 
 /* ---------- 22 · BANNER DE COOKIES / ANALÍTICA ---------- */
+.cookie-banner[hidden] { display: none; }
 .cookie-banner {
   position: fixed;
   left: clamp(1rem, 2.5vw, 1.75rem);
@@ -2498,6 +2500,7 @@ em.accent { font-size: 1.04em; }
 .t-card[role="button"]:hover { transform: translateY(-4px); box-shadow: var(--shadow-m); }
 .t-card[role="button"]:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
+.t-modal[hidden] { display: none; }
 .t-modal {
   position: fixed;
   inset: 0;

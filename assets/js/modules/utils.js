@@ -6,6 +6,16 @@ export const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 export const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 export const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
+/* Heurística de equipo modesto: pocos núcleos o poca RAM (deviceMemory solo
+   existe en navegadores basados en Chromium, de ahí el valor por defecto
+   generoso). Se usa para recortar el trabajo por frame de los efectos más
+   costosos (estela del cursor, retícula del hero, partículas de la intro)
+   sin desactivar el movimiento por completo. */
+export const isLowPower =
+  (navigator.hardwareConcurrency || 8) <= 4 ||
+  (navigator.deviceMemory || 8) <= 4 ||
+  navigator.connection?.saveData === true;
+
 /* Ticker: un único requestAnimationFrame para toda la web. */
 const subscribers = new Set();
 let running = false;
