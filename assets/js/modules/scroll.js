@@ -1,41 +1,13 @@
-/* Scroll: suavizado tipo Lenis (solo rueda), parallax, estado del header,
-   botón flotante de WhatsApp y progreso de la línea del proceso. */
-import { lerp, clamp, ticker, prefersReduced, isFinePointer } from './utils.js';
+/* Scroll: parallax, estado del header, botón flotante de WhatsApp
+   y progreso de la línea del proceso. Usa el scroll nativo del navegador
+   (fiable en todos los dispositivos); el resto del motion no depende de él. */
+import { clamp, ticker, prefersReduced } from './utils.js';
 
 export function initScroll() {
   const nav = document.querySelector('.nav');
   const wa = document.querySelector('.wa-float');
   const parallaxEls = [...document.querySelectorAll('[data-parallax]')];
   const steps = document.querySelector('.steps');
-
-  /* --- Rueda suavizada (progresivo: nunca rompe teclado, anclas ni barra) --- */
-  if (!prefersReduced && isFinePointer) {
-    let target = window.scrollY;
-    let current = window.scrollY;
-    let animating = false;
-
-    const max = () => document.documentElement.scrollHeight - innerHeight;
-
-    window.addEventListener('wheel', (e) => {
-      if (e.ctrlKey || e.defaultPrevented) return;
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-      if (e.target.closest('textarea, [data-native-scroll], .mobile-menu')) return;
-      e.preventDefault();
-      const d = e.deltaMode === 1 ? e.deltaY * 32 : e.deltaY;
-      if (!animating) { target = current = window.scrollY; }
-      target = clamp(target + d, 0, max());
-      animating = true;
-    }, { passive: false });
-
-    ticker.add(() => {
-      if (!animating) return;
-      // Si otro mecanismo movió el scroll (teclado, ancla), cede el control
-      if (Math.abs(window.scrollY - current) > 1.5) { animating = false; return; }
-      current = lerp(current, target, 0.115);
-      if (Math.abs(target - current) < 0.4) { current = target; animating = false; }
-      window.scrollTo(0, current);
-    });
-  }
 
   /* --- Estados ligados al scroll (un solo listener pasivo) --- */
   let lastY = window.scrollY;
@@ -61,7 +33,7 @@ export function initScroll() {
   // La pista de WhatsApp también aparece pronto en páginas cortas
   if (wa && document.documentElement.scrollHeight <= innerHeight * 1.4) wa.classList.add('is-on');
 
-  /* --- Parallax sutil --- */
+  /* --- Parallax sutil (expone --py; el elemento decide cómo componerlo) --- */
   if (!prefersReduced && parallaxEls.length) {
     ticker.add(() => {
       const vh = innerHeight;
@@ -70,7 +42,7 @@ export function initScroll() {
         if (r.bottom < -80 || r.top > vh + 80) continue;
         const center = (r.top + r.height / 2 - vh / 2) / vh; // -0.5 … 0.5 aprox
         const speed = parseFloat(el.dataset.parallax || '0.1');
-        el.style.transform = `translate3d(0, ${(-center * speed * 100).toFixed(2)}px, 0)`;
+        el.style.setProperty('--py', `${(-center * speed * 100).toFixed(2)}px`);
       }
     });
   }
