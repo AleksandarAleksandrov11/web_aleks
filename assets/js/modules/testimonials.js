@@ -12,6 +12,7 @@ export function initTestimonials() {
   const roleEl = modal.querySelector('.tm-role');
   const avatarEl = modal.querySelector('.tm-avatar');
   let lastFocus = null;
+  let lockedScrollY = 0;
 
   const read = (el) => {
     const cap = el.querySelector('figcaption');
@@ -32,7 +33,16 @@ export function initTestimonials() {
     avatarEl.textContent = t.initials;
     lastFocus = document.activeElement;
     modal.hidden = false;
+    // Bloqueo de scroll robusto: overflow:hidden solo no basta en iOS Safari,
+    // que al aplicarlo a media página desplazada "salta" el fondo arriba.
+    // Fijamos el body en su sitio con position:fixed y compensamos con top,
+    // así el popup se abre justo donde estabas, sin ningún salto.
+    lockedScrollY = window.scrollY;
     document.documentElement.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${lockedScrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
     requestAnimationFrame(() => modal.classList.add('is-open'));
     // preventScroll: el modal es fixed y ya está centrado en pantalla; sin esto
     // el navegador hace scroll de la página al enfocar (salto innecesario).
@@ -42,8 +52,13 @@ export function initTestimonials() {
   const close = () => {
     modal.classList.remove('is-open');
     document.documentElement.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    window.scrollTo({ top: lockedScrollY, left: 0, behavior: 'instant' });
     setTimeout(() => { modal.hidden = true; }, 420);
-    lastFocus?.focus?.();
+    lastFocus?.focus?.({ preventScroll: true });
   };
 
   // Solo las tarjetas de la pista visible (no las duplicadas aria-hidden) son interactivas
