@@ -34,7 +34,9 @@ export function initTestimonials() {
     modal.hidden = false;
     document.documentElement.style.overflow = 'hidden';
     requestAnimationFrame(() => modal.classList.add('is-open'));
-    cardEl.focus();
+    // preventScroll: el modal es fixed y ya está centrado en pantalla; sin esto
+    // el navegador hace scroll de la página al enfocar (salto innecesario).
+    cardEl.focus({ preventScroll: true });
   };
 
   const close = () => {

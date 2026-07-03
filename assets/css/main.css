@@ -931,6 +931,9 @@ em.accent { font-size: 1.04em; }
   flex: 1;
   min-height: 120px;
   margin: -0.4rem -0.4rem 0.4rem;
+  /* Reserva sitio para .cell-tag (absoluta, top:1.4rem), que si no queda
+     fuera del flujo y se puede solapar con vizs más altos como .viz-feed */
+  padding-top: 2.4rem;
   display: grid;
   place-items: center;
   overflow: hidden;

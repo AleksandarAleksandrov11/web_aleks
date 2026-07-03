@@ -14,10 +14,18 @@ function fill(el) {
   if (!trackWidth) return;
   const target = innerWidth * 2.1; // margen de sobra para que el bucle nunca deje huecos
   const copies = Math.max(1, Math.ceil(target / trackWidth));
+  // La pista original lleva corriendo desde la carga (o desde antes de este
+  // resize), así que ya tiene una fase de animación en marcha. Si los clones
+  // nuevos arrancan en 0 se desincronizan del original y, al reconstruirse
+  // en un resize, las tarjetas acaban solapándose/atropellándose entre sí.
+  const originalAnim = track.getAnimations()[0];
+  const currentTime = originalAnim?.currentTime;
   for (let i = 0; i < copies; i++) {
     const clone = track.cloneNode(true);
     clone.setAttribute('aria-hidden', 'true');
     el.appendChild(clone);
+    const cloneAnim = clone.getAnimations()[0];
+    if (cloneAnim && currentTime != null) cloneAnim.currentTime = currentTime;
   }
 }
 
