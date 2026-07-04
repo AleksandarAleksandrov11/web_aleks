@@ -110,87 +110,153 @@
 
     <section class="section-tight">
       <div class="container">
-        <div class="contact-layout">
-          <form class="form" method="POST" action="https://formsubmit.co/aaswebmarketing@gmail.com" novalidate aria-label="Formulario de contacto">
-            <div class="form-row">
-              <div class="field">
-                <label for="f-nombre">Nombre</label>
+        <div class="qform-wrap">
+          <form class="qform" method="POST" action="https://formsubmit.co/aaswebmarketing@gmail.com" novalidate aria-label="Formulario de contacto">
+            <!-- Config FormSubmit + honeypot (funciona también sin JS) -->
+            <input type="hidden" name="_subject" value="Nueva solicitud de presupuesto — AAS Marketing">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="qform-gotcha" aria-hidden="true">
+
+            <div class="qform-head">
+              <div class="qform-topbar">
+                <button class="qform-back" type="button" data-back hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><span>Atrás</span></button>
+                <p class="qform-count" aria-hidden="true"><b class="cur">01</b><span>/</span><span class="tot">07</span></p>
+              </div>
+              <div class="qform-progress" role="progressbar" aria-label="Progreso del formulario" aria-valuemin="1" aria-valuemax="7" aria-valuenow="1"><span class="qform-bar"></span></div>
+            </div>
+
+            <div class="qform-stage">
+              <!-- 01 · Nombre -->
+              <div class="qstep is-active" data-step="name">
+                <label class="qstep-q" for="q-name">Para empezar, ¿cómo te <em class="accent">llamas</em>?</label>
+                <p class="qstep-hint">Así sabemos cómo dirigirnos a ti.</p>
                 <span class="control">
-                  <input id="f-nombre" name="name" type="text" autocomplete="name" placeholder="¿Cómo te llamas?" required maxlength="60">
+                  <input id="q-name" name="name" type="text" autocomplete="name" placeholder="Tu nombre" maxlength="60" enterkeyhint="next">
                   <span class="state-ico ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11"/></svg></span><span class="state-ico ko"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></span>
                 </span>
-                <span class="field-err" role="alert" aria-live="polite"></span>
+                <span class="qstep-err" role="alert" aria-live="polite"></span>
+                <div class="qstep-nav">
+                  <button class="btn btn-l" type="button" data-next>Continuar <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
+                  <span class="qstep-tip">o pulsa <kbd>Enter ↵</kbd></span>
+                </div>
               </div>
-              <div class="field">
-                <label for="f-email">Correo electrónico</label>
+
+              <!-- 02 · Teléfono -->
+              <div class="qstep" data-step="phone">
+                <label class="qstep-q" for="q-tel">¿A qué <em class="accent">teléfono</em> te contactamos?</label>
+                <p class="qstep-hint">Te respondemos por WhatsApp o llamada, lo que prefieras.</p>
                 <span class="control">
-                  <input id="f-email" name="email" type="email" autocomplete="email" placeholder="tu@correo.com" required maxlength="254" inputmode="email">
+                  <input id="q-tel" name="phone" type="tel" autocomplete="tel" placeholder="+34 600 000 000" inputmode="tel" maxlength="18" enterkeyhint="next">
                   <span class="state-ico ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11"/></svg></span><span class="state-ico ko"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></span>
                 </span>
-                <span class="field-err" role="alert" aria-live="polite"></span>
+                <span class="qstep-err" role="alert" aria-live="polite"></span>
+                <div class="qstep-nav">
+                  <button class="btn btn-l" type="button" data-next>Continuar <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
+                  <span class="qstep-tip">o pulsa <kbd>Enter ↵</kbd></span>
+                </div>
+              </div>
+
+              <!-- 03 · Email (opcional) -->
+              <div class="qstep" data-step="email" data-optional>
+                <label class="qstep-q" for="q-email">¿Tu <em class="accent">correo</em>? <span class="qstep-opt">opcional</span></label>
+                <p class="qstep-hint">Solo si prefieres que te escribamos también por email.</p>
+                <span class="control">
+                  <input id="q-email" name="email" type="email" autocomplete="email" placeholder="tu@correo.com" maxlength="254" inputmode="email" enterkeyhint="next">
+                  <span class="state-ico ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11"/></svg></span><span class="state-ico ko"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></span>
+                </span>
+                <span class="qstep-err" role="alert" aria-live="polite"></span>
+                <div class="qstep-nav">
+                  <button class="btn btn-l" type="button" data-next>Continuar <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
+                  <button class="qstep-skip" type="button" data-next>Saltar este paso</button>
+                </div>
+              </div>
+
+              <!-- 04 · Servicios -->
+              <fieldset class="qstep" data-step="services" data-optional>
+                <legend class="qstep-q">¿Qué <em class="accent">necesitas</em>?</legend>
+                <p class="qstep-hint">Elige todo lo que encaje. Si no lo tienes claro, también vale.</p>
+                <div class="chip-set">
+                  
+                  <label class="chip"><input type="checkbox" name="services" value="Web nueva"><span>Web nueva</span></label>
+                  <label class="chip"><input type="checkbox" name="services" value="Rediseño web"><span>Rediseño web</span></label>
+                  <label class="chip"><input type="checkbox" name="services" value="Tienda online"><span>Tienda online</span></label>
+                  <label class="chip"><input type="checkbox" name="services" value="Landing page"><span>Landing page</span></label>
+                  <label class="chip"><input type="checkbox" name="services" value="Gestión de redes sociales"><span>Gestión de redes sociales</span></label>
+                  <label class="chip"><input type="checkbox" name="services" value="Estrategia de contenido"><span>Estrategia de contenido</span></label>
+                  <label class="chip"><input type="checkbox" name="services" value="Edición de vídeo"><span>Edición de vídeo</span></label>
+                  <label class="chip"><input type="checkbox" name="services" value="SEO"><span>SEO</span></label>
+                  <label class="chip"><input type="checkbox" name="services" value="Branding"><span>Branding</span></label>
+                  <label class="chip"><input type="checkbox" name="services" value="Automatizaciones"><span>Automatizaciones</span></label>
+                  <label class="chip"><input type="checkbox" name="services" value="Mantenimiento web"><span>Mantenimiento web</span></label>
+                  <label class="chip"><input type="checkbox" name="services" value="Aún no lo sé"><span>Aún no lo sé</span></label>
+                </div>
+                <div class="qstep-nav">
+                  <button class="btn btn-l" type="button" data-next>Continuar <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
+                </div>
+              </fieldset>
+
+              <!-- 05 · Proyecto -->
+              <div class="qstep" data-step="message">
+                <label class="qstep-q" for="q-msg">Cuéntanos tu <em class="accent">proyecto</em></label>
+                <p class="qstep-hint">Qué haces, qué necesitas y qué te gustaría conseguir. <span class="count">0 / 1200</span></p>
+                <span class="control">
+                  <textarea id="q-msg" name="message" placeholder="Por ejemplo: tengo una clínica y quiero una web nueva que me traiga citas…" minlength="20" maxlength="1200" rows="5"></textarea>
+                </span>
+                <span class="qstep-err" role="alert" aria-live="polite"></span>
+                <div class="qstep-nav">
+                  <button class="btn btn-l" type="button" data-next>Continuar <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
+                </div>
+              </div>
+
+              <!-- 06 · Redes (opcional) -->
+              <div class="qstep" data-step="social" data-optional>
+                <label class="qstep-q" for="q-social">¿Alguna <em class="accent">red social</em> del negocio? <span class="qstep-opt">opcional</span></label>
+                <p class="qstep-hint">Pásanos tu Instagram, TikTok o web actual y nos inspiramos en tu estilo.</p>
+                <span class="control">
+                  <input id="q-social" name="social" type="text" autocomplete="url" placeholder="@tunegocio o instagram.com/tunegocio" maxlength="200" enterkeyhint="next">
+                  <span class="state-ico ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11"/></svg></span><span class="state-ico ko"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></span>
+                </span>
+                <span class="qstep-err" role="alert" aria-live="polite"></span>
+                <div class="qstep-nav">
+                  <button class="btn btn-l" type="button" data-next>Continuar <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
+                  <button class="qstep-skip" type="button" data-next>Saltar este paso</button>
+                </div>
+              </div>
+
+              <!-- 07 · Repasar y enviar -->
+              <div class="qstep" data-step="review">
+                <h2 class="qstep-q">Repasa y <em class="accent">envía</em></h2>
+                <p class="qstep-hint">Comprueba que está todo bien. Puedes volver atrás para editar cualquier respuesta.</p>
+                <dl class="qsummary" aria-live="polite"></dl>
+                <label class="consent">
+                  <input type="checkbox" name="consent" required>
+                  <span>He leído y acepto la <a href="../privacidad/">política de privacidad</a>. Tus datos solo se usan para responderte.</span>
+                </label>
+                <div class="qstep-nav">
+                  <button class="btn btn-l btn-submit" type="submit">
+                    <span class="txt-1">Enviar solicitud <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></span>
+                    <span class="txt-2"><span class="spinner" aria-hidden="true"></span> Enviando…</span>
+                  </button>
+                </div>
+                <p class="small form-global-err" hidden role="alert">No se pudo enviar. Prueba de nuevo o <a class="link-draw" href="https://wa.me/34695850590?text=Hola%20AAS%20Marketing%2C%20he%20visto%20vuestra%20web%20y%20me%20interesa%20un%20proyecto.%20%C2%BFHablamos%3F" target="_blank" rel="noopener">escríbenos por WhatsApp</a>.</p>
               </div>
             </div>
-            <div class="field">
-              <label for="f-tel">Teléfono <span class="opt">opcional, para responderte por WhatsApp</span></label>
-              <span class="control">
-                <input id="f-tel" name="phone" type="tel" autocomplete="tel" placeholder="+34 600 000 000" inputmode="tel" maxlength="18">
-                <span class="state-ico ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11"/></svg></span><span class="state-ico ko"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></span>
-              </span>
-              <span class="field-err" role="alert" aria-live="polite"></span>
-            </div>
-            <fieldset class="field" style="border:none">
-              <legend style="font-size:.8rem;font-weight:650;letter-spacing:.04em;color:var(--ink-soft);padding:0;margin-bottom:.55rem">¿Qué necesitas? <span class="opt" style="font-weight:500;color:var(--ink-faint);font-size:.72rem">puedes elegir varias</span></legend>
-              <div class="chip-set">
-                
-                <label class="chip"><input type="checkbox" name="services" value="Web nueva"><span>Web nueva</span></label>
-                <label class="chip"><input type="checkbox" name="services" value="Rediseño"><span>Rediseño</span></label>
-                <label class="chip"><input type="checkbox" name="services" value="Tienda online"><span>Tienda online</span></label>
-                <label class="chip"><input type="checkbox" name="services" value="Landing page"><span>Landing page</span></label>
-                <label class="chip"><input type="checkbox" name="services" value="Redes sociales"><span>Redes sociales</span></label>
-                <label class="chip"><input type="checkbox" name="services" value="SEO"><span>SEO</span></label>
-                <label class="chip"><input type="checkbox" name="services" value="Branding"><span>Branding</span></label>
-                <label class="chip"><input type="checkbox" name="services" value="Otro"><span>Otro</span></label>
-              </div>
-            </fieldset>
-            <div class="field">
-              <label for="f-msg">Cuéntame tu proyecto <span class="count">0 / 1200</span></label>
-              <span class="control">
-                <textarea id="f-msg" name="message" placeholder="¿Qué haces, qué necesitas y qué te gustaría conseguir?" required minlength="20" maxlength="1200"></textarea>
-              </span>
-              <span class="field-err" role="alert" aria-live="polite"></span>
-            </div>
-            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-5000px;opacity:0" aria-hidden="true">
-            <label class="consent">
-              <input type="checkbox" name="consent" required>
-              <span>He leído y acepto la <a href="../privacidad/">política de privacidad</a>. Tus datos solo se usan para responderte.</span>
-            </label>
-            <div class="form-submit">
-              <button class="btn btn-l btn-submit" type="submit">
-                <span class="txt-1">Solicitar demo gratuita <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></span>
-                <span class="txt-2"><span class="spinner" aria-hidden="true"></span> Enviando…</span>
-              </button>
-              <p class="small form-global-err" hidden role="alert">No se pudo enviar. Prueba de nuevo o <a class="link-draw" href="https://wa.me/34695850590?text=Hola%20AAS%20Marketing%2C%20he%20visto%20vuestra%20web%20y%20me%20interesa%20un%20proyecto.%20%C2%BFHablamos%3F" target="_blank" rel="noopener">escríbenos por WhatsApp</a>.</p>
-            </div>
+
             <div class="form-success" tabindex="-1" aria-live="polite">
               <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span>
-              <h3>¡Mensaje enviado!</h3>
+              <h3>¡Solicitud enviada!</h3>
               <p class="small">Gracias por escribirnos. Te respondemos en menos de 24 horas.<br>Si tienes prisa, <a class="link-draw" href="https://wa.me/34695850590?text=Hola%20AAS%20Marketing%2C%20he%20visto%20vuestra%20web%20y%20me%20interesa%20un%20proyecto.%20%C2%BFHablamos%3F" target="_blank" rel="noopener">hablamos por WhatsApp</a>.</p>
-              <button class="btn btn-ghost btn-s" type="button" data-send-another>Enviar otro mensaje</button>
+              <button class="btn btn-ghost btn-s" type="button" data-send-another>Enviar otra solicitud</button>
             </div>
           </form>
 
-          <aside class="contact-aside">
+          <aside class="contact-alts" aria-label="Otras formas de contacto">
             <a class="contact-card" href="https://wa.me/34695850590?text=Hola%20AAS%20Marketing%2C%20he%20visto%20vuestra%20web%20y%20me%20interesa%20un%20proyecto.%20%C2%BFHablamos%3F" target="_blank" rel="noopener" data-cursor-label="WhatsApp ↗">
               <span class="cc-ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.44 15.12L2.1 21.9l4.9-1.46A9.9 9.9 0 1 0 12.04 2Zm0 18.02a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-2.9.86.87-2.83-.2-.3a8.12 8.12 0 1 1 6.66 3.58Zm4.45-6.08c-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06a6.63 6.63 0 0 1-3.31-2.9c-.25-.43.25-.4.71-1.33.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.81-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.11 3.64.57.25 1.02.4 1.37.51.58.18 1.1.16 1.51.1.46-.07 1.44-.59 1.64-1.16.2-.57.2-1.05.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg></span>
               <strong>WhatsApp directo</strong>
-              <p>La vía más rápida. Escríbenos o mándanos un audio contándonos tu idea.</p>
+              <p>La vía más rápida. Escríbenos o mándanos un audio con tu idea.</p>
               <span class="link-draw">+34 695 850 590 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-            </a>
-            <a class="contact-card" href="https://wa.me/34695850590?text=Hola%20AAS%20Marketing%2C%20he%20visto%20vuestra%20web%20y%20me%20interesa%20un%20proyecto.%20%C2%BFHablamos%3F" target="_blank" rel="noopener" data-cursor-label="WhatsApp ↗">
-              <span class="cc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="16" rx="3"/><path d="M8 3v4m8-4v4M3.5 10.5h17"/></svg></span>
-              <strong>Reserva una llamada</strong>
-              <p>Quince minutos por videollamada para conocernos y orientar tu proyecto.</p>
-              <span class="link-draw">Proponer horario <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
             </a>
             <a class="contact-card" href="mailto:aaswebmarketing@gmail.com">
               <span class="cc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3.5 7 7.4 5.4a2 2 0 0 0 2.2 0L20.5 7"/></svg></span>
