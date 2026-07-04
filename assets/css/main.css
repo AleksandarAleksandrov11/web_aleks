@@ -1820,136 +1820,57 @@ em.accent { font-size: 1.04em; }
 .value-item strong { color: var(--ink); font-weight: 650; display: block; margin-bottom: 0.2rem; }
 .value-item p { font-size: 0.95rem; color: var(--ink-mute); }
 
-/* ---------- 16 · FORMULARIO CONVERSACIONAL ---------- */
-.qform-wrap { max-width: 720px; margin-inline: auto; }
+/* ---------- 16 · FORMULARIO ---------- */
+.contact-layout { display: grid; grid-template-columns: 1fr 0.72fr; gap: var(--s-4); align-items: start; }
 
-.qform {
-  position: relative;
+.form {
+  display: grid;
+  gap: 1.6rem;
+  padding: clamp(1.75rem, 3.5vw, 3rem);
   border-radius: var(--r-l);
   border: 1px solid var(--line);
   background: var(--bg-card);
   box-shadow: var(--shadow-s);
-  padding: clamp(1.5rem, 4vw, 2.75rem);
+  position: relative;
   overflow: hidden;
 }
-.qform-gotcha { position: absolute; left: -5000px; width: 1px; height: 1px; opacity: 0; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
 
-/* Cabecera: atrás · contador · barra de progreso */
-.qform-head { margin-bottom: clamp(1.6rem, 4vw, 2.4rem); }
-.qform-topbar { display: flex; align-items: center; justify-content: space-between; min-height: 32px; margin-bottom: 0.9rem; }
-.qform-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--ink-mute);
-  padding: 0.3rem 0.15rem;
-  transition: color 0.25s, gap 0.3s var(--ease-out);
-}
-.qform-back svg { width: 15px; height: 15px; transform: rotate(180deg); }
-.qform-back:hover { color: var(--ink); gap: 0.6rem; }
-.qform-back[hidden] { display: none; }
-.qform-count { font-size: 0.8rem; font-weight: 600; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
-.qform-count b { color: var(--ink); font-weight: 750; }
-.qform-count span { margin-inline: 0.25rem; }
-.qform-progress { height: 3px; border-radius: 3px; background: var(--line); overflow: hidden; }
-.qform-bar { display: block; height: 100%; width: 14.28%; border-radius: inherit; background: var(--ink); transition: width 0.55s var(--ease-out); }
-
-/* Cada pregunta es un paso; con JS solo se ve el activo. Sin JS se apilan
-   y el formulario sigue funcionando y enviándose a FormSubmit igual. */
-.qform-stage { position: relative; }
-.qstep { display: grid; gap: 0.55rem; border: none; padding: 0; margin: 0; min-inline-size: 0; }
-.qform-stage .qstep + .qstep { margin-top: 2.4rem; }
-.js .qform-stage .qstep + .qstep { margin-top: 0; }
-.js .qstep { display: none; }
-.js .qstep.is-active { display: grid; animation: qstep-in 0.5s var(--ease-out); }
-.js .qstep.is-active.is-back { animation-name: qstep-in-back; }
-@keyframes qstep-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-@keyframes qstep-in-back { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: none; } }
-
-.qstep-q {
-  font-size: clamp(1.5rem, 1.1rem + 2vw, 2.05rem);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.16;
-  color: var(--ink);
-}
-.qstep-q .qstep-opt {
+.field { position: relative; display: grid; gap: 0.4rem; }
+.field label {
   font-size: 0.8rem;
-  font-weight: 550;
-  letter-spacing: 0.02em;
-  color: var(--ink-faint);
-  vertical-align: middle;
-  margin-left: 0.35rem;
-}
-.qstep-hint { font-size: 0.98rem; color: var(--ink-mute); margin-bottom: 0.45rem; }
-.qstep-hint .count { font-variant-numeric: tabular-nums; font-size: 0.8rem; color: var(--ink-faint); margin-left: 0.35rem; }
-.qstep-err {
-  font-size: 0.82rem;
-  font-weight: 550;
-  color: var(--err);
-  min-height: 1.1em;
-  opacity: 0;
-  transform: translateY(-3px);
-  transition: opacity 0.3s, transform 0.3s var(--ease-out);
-}
-.qstep.is-invalid .qstep-err { opacity: 1; transform: none; }
-.qstep-nav { display: flex; align-items: center; gap: 1.1rem 1.25rem; flex-wrap: wrap; margin-top: 1rem; }
-.qstep-tip { font-size: 0.8rem; color: var(--ink-faint); }
-.qstep-tip kbd {
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
   font-weight: 650;
-  padding: 0.15rem 0.45rem;
-  border-radius: 6px;
-  border: 1px solid var(--line-strong);
-  color: var(--ink-mute);
-  background: var(--bg);
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
-.qstep-skip {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--ink-mute);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  transition: color 0.25s;
-}
-.qstep-skip:hover { color: var(--ink); }
-
-/* Resumen del último paso */
-.qsummary { display: grid; gap: 0.7rem; margin: 0.4rem 0 0.4rem; }
-.qsummary div { display: grid; grid-template-columns: minmax(88px, auto) 1fr; gap: 0.4rem 1rem; align-items: baseline; padding-bottom: 0.7rem; border-bottom: 1px solid var(--line); }
-.qsummary dt { font-size: 0.76rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); }
-.qsummary dd { font-size: 0.95rem; color: var(--ink); overflow-wrap: anywhere; }
-.qsummary dd.is-empty { color: var(--ink-faint); font-style: italic; }
-
-.control {
+.field label .opt { font-weight: 500; color: var(--ink-faint); font-size: 0.72rem; }
+.field .control {
   position: relative;
-  display: block;
   border-radius: var(--r-s);
   border: 1px solid var(--line-strong);
   background: var(--bg);
   transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s var(--ease-out);
 }
-.control input, .control textarea {
+.field input, .field textarea, .field select {
   width: 100%;
-  padding: 1.05rem 2.9rem 1.05rem 1.15rem;
-  font-size: 1.05rem;
+  padding: 0.95rem 2.8rem 0.95rem 1.1rem;
+  font-size: 1rem;
   color: var(--ink);
-  background: transparent;
   border-radius: inherit;
   outline: none;
 }
-.control textarea { min-height: 150px; resize: vertical; padding-right: 1.15rem; line-height: 1.55; }
-.control input::placeholder, .control textarea::placeholder { color: var(--ink-faint); }
-.control:focus-within {
+.field textarea { min-height: 150px; resize: vertical; padding-right: 1.1rem; }
+.field input::placeholder, .field textarea::placeholder { color: var(--ink-faint); }
+.field .control:focus-within {
   border-color: var(--ink);
   box-shadow: 0 0 0 3.5px color-mix(in srgb, var(--ink) 9%, transparent);
   transform: translateY(-1px);
 }
 /* Línea inferior que se dibuja al enfocar */
-.control::after {
+.field .control::after {
   content: "";
   position: absolute;
   left: 8%; right: 8%;
@@ -1959,8 +1880,8 @@ em.accent { font-size: 1.04em; }
   transform: scaleX(0);
   transition: transform 0.45s var(--ease-out);
 }
-.control:focus-within::after { transform: scaleX(1); }
-.state-ico {
+.field .control:focus-within::after { transform: scaleX(1); }
+.field .state-ico {
   position: absolute;
   right: 0.9rem;
   top: 50%;
@@ -1972,12 +1893,23 @@ em.accent { font-size: 1.04em; }
   opacity: 0;
   transition: opacity 0.25s, transform 0.35s var(--ease-spring);
 }
-.state-ico svg { width: 11px; height: 11px; }
-.qstep.is-valid .state-ico.ok, .qstep.is-invalid .state-ico.ko { opacity: 1; transform: translateY(-50%) scale(1); }
-.state-ico.ok { background: color-mix(in srgb, var(--ok) 14%, transparent); color: var(--ok); }
-.state-ico.ko { background: color-mix(in srgb, var(--err) 12%, transparent); color: var(--err); }
-.qstep.is-invalid .control { border-color: color-mix(in srgb, var(--err) 55%, var(--line-strong)); }
-.qstep.is-invalid .control::after { background: var(--err); transform: scaleX(1); }
+.field .state-ico svg { width: 11px; height: 11px; }
+.field.is-valid .state-ico.ok, .field.is-invalid .state-ico.ko { opacity: 1; transform: translateY(-50%) scale(1); }
+.field .state-ico.ok { background: color-mix(in srgb, var(--ok) 14%, transparent); color: var(--ok); }
+.field .state-ico.ko { background: color-mix(in srgb, var(--err) 12%, transparent); color: var(--err); }
+.field.is-invalid .control { border-color: color-mix(in srgb, var(--err) 55%, var(--line-strong)); }
+.field.is-invalid .control::after { background: var(--err); transform: scaleX(1); }
+.field .field-err {
+  font-size: 0.78rem;
+  font-weight: 550;
+  color: var(--err);
+  min-height: 1.1em;
+  opacity: 0;
+  transform: translateY(-3px);
+  transition: opacity 0.3s, transform 0.3s var(--ease-out);
+}
+.field.is-invalid .field-err { opacity: 1; transform: none; }
+.field .count { font-variant-numeric: tabular-nums; font-size: 0.72rem; color: var(--ink-faint); }
 
 /* Selector de servicio como chips */
 .chip-set { display: flex; flex-wrap: wrap; gap: 0.55rem; }
@@ -2002,8 +1934,8 @@ em.accent { font-size: 1.04em; }
 .chip-set input:checked + span::before { content: "✓"; opacity: 1; }
 .chip-set input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: 3px; }
 
-.qform .consent { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.85rem; color: var(--ink-mute); margin-top: 0.4rem; }
-.qform .consent input {
+.form .consent { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.82rem; color: var(--ink-mute); }
+.form .consent input {
   appearance: none;
   flex: none;
   width: 19px; height: 19px;
@@ -2015,10 +1947,11 @@ em.accent { font-size: 1.04em; }
   transition: background 0.25s, border-color 0.25s, transform 0.3s var(--ease-spring);
   cursor: pointer;
 }
-.qform .consent input:checked { background: var(--ink); border-color: var(--ink); transform: scale(1.05); }
-.qform .consent input:checked::after { content: "✓"; color: var(--bg); font-size: 0.7rem; font-weight: 800; }
-.qform .consent a { text-decoration: underline; text-underline-offset: 2px; }
+.form .consent input:checked { background: var(--ink); border-color: var(--ink); transform: scale(1.05); }
+.form .consent input:checked::after { content: "✓"; color: var(--bg); font-size: 0.7rem; font-weight: 800; }
+.form .consent a { text-decoration: underline; text-underline-offset: 2px; }
 
+.form-submit { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
 .btn-submit { min-width: 220px; position: relative; }
 .btn-submit .txt-2 { position: absolute; opacity: 0; transform: translateY(12px); }
 .btn-submit .txt-1, .btn-submit .txt-2 { transition: opacity 0.3s, transform 0.4s var(--ease-out); display: inline-flex; align-items: center; gap: 0.5rem; }
@@ -2050,7 +1983,7 @@ em.accent { font-size: 1.04em; }
   transition: opacity 0.5s, transform 0.6s var(--ease-out), visibility 0s 0.5s;
   z-index: 5;
 }
-.qform.is-sent .form-success { opacity: 1; visibility: visible; transform: none; transition: opacity 0.5s, transform 0.6s var(--ease-out); }
+.form.is-sent .form-success { opacity: 1; visibility: visible; transform: none; transition: opacity 0.5s, transform 0.6s var(--ease-out); }
 .form-success .check {
   width: 74px; height: 74px;
   border-radius: 50%;
@@ -2064,12 +1997,12 @@ em.accent { font-size: 1.04em; }
   stroke-dasharray: 40;
   stroke-dashoffset: 40;
 }
-.qform.is-sent .check svg path { animation: draw-check 0.7s var(--ease-out) 0.35s forwards; }
+.form.is-sent .check svg path { animation: draw-check 0.7s var(--ease-out) 0.35s forwards; }
 @keyframes draw-check { to { stroke-dashoffset: 0; } }
 .form-success [data-send-another] { margin-top: 0.4rem; }
 
-/* Alternativas de contacto (bajo el formulario) */
-.contact-alts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; max-width: 720px; margin: var(--s-4) auto 0; }
+/* Panel lateral de contacto */
+.contact-aside { display: grid; gap: 1.1rem; position: sticky; top: calc(var(--nav-h) + 24px); }
 .contact-card {
   padding: 1.6rem 1.7rem;
   border-radius: var(--r-m);
@@ -2396,7 +2329,8 @@ em.accent { font-size: 1.04em; }
   .work-item .work-info, .work-item.is-flip .work-info { grid-column: 1 / -1; order: 2; }
   .work-grid { grid-template-columns: repeat(2, 1fr); }
   .demo-band .demo-grid { grid-template-columns: 1fr; }
-  .contact-alts { grid-template-columns: repeat(3, 1fr); }
+  .contact-layout { grid-template-columns: 1fr; }
+  .contact-aside { position: static; grid-template-columns: repeat(2, 1fr); }
   .about-grid { grid-template-columns: 1fr; }
   .about-photo { position: static; max-width: 420px; }
   .footer-main { grid-template-columns: 1fr 1fr; }
@@ -2421,7 +2355,7 @@ em.accent { font-size: 1.04em; }
 }
 
 @media (max-width: 640px) {
-  .grid-2, .grid-3, .work-grid, .blog-grid, .contact-alts { grid-template-columns: 1fr; }
+  .grid-2, .grid-3, .form-row, .work-grid, .blog-grid, .contact-aside { grid-template-columns: 1fr; }
   .bento-cell, .bento-cell.is-wide { grid-column: span 12; min-height: 260px; }
   .hero h1 { font-size: clamp(2.7rem, 12vw, 4rem); max-width: 18ch; }
   .hero-stage { aspect-ratio: 4 / 3; }
