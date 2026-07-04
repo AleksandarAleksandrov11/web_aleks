@@ -39,9 +39,9 @@ reconstruye el logotipo AAS con partículas (Path2D del mismo trazado).
 
 ## Configuración actual
 
-- **Dominio:** `https://aasmarketing.com` (en canonicals, Open Graph, JSON-LD,
-  `sitemap.xml` y `robots.txt`). Si cambia, sustitúyelo en todo el proyecto:
-  `grep -rl "aasmarketing.com" . | xargs sed -i 's|aasmarketing.com|TUDOMINIO.com|g'`
+- **Dominio:** `https://www.aasmarketing.com` (en canonicals, Open Graph, JSON-LD,
+  `sitemap.xml` y `robots.txt`), definido en un único sitio: `SITE.url` en
+  `gen/core.mjs`. Si cambia, edítalo ahí y vuelve a ejecutar `node build.mjs`.
 - **Correo:** el formulario envía por [FormSubmit](https://formsubmit.co) a
   `aaswebmarketing@gmail.com`. El **primer envío** desde el dominio publicado
   dispara un correo de confirmación de FormSubmit: pulsa “Activate” una vez.
