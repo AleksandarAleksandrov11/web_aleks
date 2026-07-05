@@ -1740,6 +1740,26 @@ em.accent { font-size: 1.04em; }
 .review-cta .btn .sc-g { display: inline-grid; place-items: center; width: 1.05em; height: 1.05em; }
 .review-cta .btn .sc-g svg { width: 100%; height: 100%; }
 
+/* Badge de valoración de Google (bajo el titular de testimonios) */
+.g-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.05rem;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line-strong);
+  background: var(--bg-card);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink-mute);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s, border-color 0.3s;
+}
+.g-rating:hover { transform: translateY(-2px); box-shadow: var(--shadow-s); border-color: var(--ink-mute); }
+.g-rating .sc-g { display: inline-grid; place-items: center; width: 1.15em; height: 1.15em; }
+.g-rating .sc-g svg { width: 100%; height: 100%; }
+.g-rating .stars { color: #f5a623; letter-spacing: 1.5px; font-size: 0.95em; }
+.g-rating b { color: var(--ink); font-weight: 800; font-variant-numeric: tabular-nums; }
+
 /* Iconos sociales del footer */
 .footer-social { display: flex; gap: 0.6rem; }
 .footer-social a {
