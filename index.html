@@ -30,6 +30,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="./assets/img/android-chrome-192x192.png">
   <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png">
   <link rel="manifest" href="./site.webmanifest">
+  <link rel="preload" as="image" href="./assets/video/reel-instagram-musica.webp" fetchpriority="high">
   <link rel="preload" href="./assets/fonts/manrope-var-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="./assets/fonts/instrument-serif-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
   <script>
@@ -45,18 +46,11 @@
       } catch (e) {}
     })();
   </script>
-  <link rel="stylesheet" href="./assets/css/main.css?v=8ce97c67">
-  <script type="module" src="./assets/js/main.js?v=3df3f9ae"></script>
+  <link rel="stylesheet" href="./assets/css/main.css?v=83e70c1f">
+  <script type="module" src="./assets/js/main.js?v=f8a43c78"></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.aasmarketing.com/#web","url":"https://www.aasmarketing.com/","name":"AAS Marketing · Redes sociales, Meta Ads y diseño web","inLanguage":"es","publisher":{"@id":"https://www.aasmarketing.com/#org"}},{"@type":"ProfessionalService","@id":"https://www.aasmarketing.com/#org","name":"AAS Marketing","alternateName":"AAS Marketing · Desarrollo Web","description":"Agencia de marketing digital especializada en gestión de redes sociales, campañas de Meta Ads y edición de vídeo, y en diseño web premium, tiendas online, SEO y automatizaciones.","slogan":"Marketing · Desarrollo Web","url":"https://www.aasmarketing.com","email":"aaswebmarketing@gmail.com","telephone":"+34 695 850 590","logo":"https://www.aasmarketing.com/assets/img/logo-aas.svg","image":"https://www.aasmarketing.com/assets/img/og.jpg","priceRange":"$$","areaServed":"España y trabajo remoto internacional","serviceType":["Gestión de redes sociales","Meta Ads","Edición de vídeo","Diseño web","Tiendas online","Landing pages","SEO","Branding","Automatizaciones"],"sameAs":["https://www.instagram.com/aas_webmarketing/"]}]}</script>
 </head>
 <body>
-  <div class="loader" aria-hidden="true">
-    <canvas class="loader-canvas"></canvas>
-    <div class="loader-ui">
-      <p class="loader-count"><span class="lbl">cargando</span> <b>00</b> %</p>
-      <div class="loader-bar"><i></i></div>
-    </div>
-  </div>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
   <header class="nav">
     <div class="nav-inner">
@@ -101,19 +95,19 @@
       <canvas class="hero-canvas" aria-hidden="true"></canvas>
       <div class="hero-inner">
         <div class="hero-copy">
-          <p class="pill" data-reveal><span class="dot" aria-hidden="true"></span> Redes sociales · Meta Ads · Vídeo</p>
-          <h1 data-split aria-label="Redes sociales y anuncios que llenan tu agenda de clientes."><span class="rotator" aria-hidden="true" data-words="Reels,Anuncios,Vídeos,Campañas">Reels</span> que llenan tu agenda de <em class="accent">clientes</em>.</h1>
-          <p class="lead hero-sub" data-reveal style="--rd:.15s">Somos <strong>AAS Marketing</strong>: gestionamos tus redes sociales, lanzamos campañas de <strong>Meta Ads</strong> que traen clientes y editamos vídeo que retiene. Y cuando hace falta, también diseñamos la web que remata la venta.</p>
-          <div class="hero-cta" data-reveal-group>
+          <p class="pill"><span class="dot" aria-hidden="true"></span> Redes sociales · Meta Ads · Vídeo</p>
+          <h1 aria-label="Redes sociales y anuncios que llenan tu agenda de clientes."><span class="rotator" aria-hidden="true" data-words="Reels,Anuncios,Vídeos,Campañas">Reels</span> que llenan tu agenda de <em class="accent">clientes</em>.</h1>
+          <p class="lead hero-sub">Somos <strong>AAS Marketing</strong>: gestionamos tus redes sociales, lanzamos campañas de <strong>Meta Ads</strong> que traen clientes y editamos vídeo que retiene. Y cuando hace falta, también diseñamos la web que remata la venta.</p>
+          <div class="hero-cta"-group>
             <a class="btn btn-l" href="./contacto/">Quiero crecer en redes <span class="arr"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
             <a class="btn btn-ghost btn-l" href="#resultados">Ver resultados</a>
           </div>
-          <p class="hero-proof" data-reveal style="--rd:.3s"><span><b data-count-to="20">0</b>+ clientes en redes</span><span><b data-count-to="1600">0</b>+ leads con Meta Ads</span><span><b data-count-to="300">0</b>+ vídeos editados</span></p>
+          <p class="hero-proof"><span><b>20</b>+ clientes en redes</span><span><b>1.600</b>+ leads con Meta Ads</span><span><b>300</b>+ vídeos editados</span></p>
         </div>
         <div class="hero-stage is-reels" aria-hidden="true" data-parallax="0.08">
-          <div class="phone phone-l" data-tilt="8"><img src="./assets/img/results/tatuajes-templo.webp" alt="" width="280" height="440" decoding="async"></div>
-          <div class="phone phone-r" data-tilt="8"><img src="./assets/img/results/vdn-top-coches-3000.webp" alt="" width="280" height="440" decoding="async"></div>
-          <div class="phone phone-main" data-tilt="6"><video data-reel src="./assets/video/reel-entrenador.mp4" poster="./assets/video/reel-entrenador.webp" muted loop playsinline preload="none" width="540" height="960" data-cursor-label="Sonido ♪"></video></div>
+          <div class="phone phone-l" data-tilt="8"><img src="./assets/img/results/tatuajes-templo.webp" srcset="./assets/img/results/tatuajes-templo-300.webp 300w, ./assets/img/results/tatuajes-templo.webp 560w" sizes="(max-width: 1024px) 150px, 190px" alt="" width="560" height="880" decoding="async"></div>
+          <div class="phone phone-r" data-tilt="8"><img src="./assets/img/results/vdn-top-coches-3000.webp" srcset="./assets/img/results/vdn-top-coches-3000-300.webp 300w, ./assets/img/results/vdn-top-coches-3000.webp 560w" sizes="(max-width: 1024px) 150px, 190px" alt="" width="560" height="880" decoding="async"></div>
+          <div class="phone phone-main" data-tilt="6"><video data-reel poster="./assets/video/reel-instagram-musica.webp" muted loop playsinline preload="none" width="540" height="960" data-cursor-label="Sonido ♪"><source src="./assets/video/reel-instagram-musica.mp4" type="video/mp4"></video></div>
           <span class="hero-chip chip-leads"><span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 17 6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span><span><b>+1.600</b> leads · Meta Ads</span></span>
           <span class="hero-chip chip-views"><span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></span><span><b>1,8M</b> visualizaciones</span></span>
         </div>
@@ -133,43 +127,43 @@
         </div>
         <div class="results-grid" data-reveal-group>
           <figure class="result-card">
-            <div class="rc-media"><img src="./assets/img/results/tatuajes-templo.webp" alt="Reel de un estudio de tatuajes, con 626 mil visualizaciones" width="280" height="440" loading="lazy" decoding="async"></div>
+            <div class="rc-media"><img src="./assets/img/results/tatuajes-templo.webp" srcset="./assets/img/results/tatuajes-templo-300.webp 300w, ./assets/img/results/tatuajes-templo.webp 560w" sizes="(max-width: 640px) 44vw, (max-width: 1024px) 30vw, 250px" alt="Reel de un estudio de tatuajes, con 626 mil visualizaciones" width="560" height="880" loading="lazy" decoding="async"></div>
             <figcaption><b class="rc-views">626K <small>visualizaciones</small></b><span class="rc-who">Estudio de tatuajes</span></figcaption>
           </figure>
           <figure class="result-card">
-            <div class="rc-media"><img src="./assets/img/results/vdn-top-coches-3000.webp" alt="Reel “Top 3 coches por menos de 3.000 €” de VDN Performance, con 397,5 mil visualizaciones" width="280" height="440" loading="lazy" decoding="async"></div>
+            <div class="rc-media"><img src="./assets/img/results/vdn-top-coches-3000.webp" srcset="./assets/img/results/vdn-top-coches-3000-300.webp 300w, ./assets/img/results/vdn-top-coches-3000.webp 560w" sizes="(max-width: 640px) 44vw, (max-width: 1024px) 30vw, 250px" alt="Reel “Top 3 coches por menos de 3.000 €” de VDN Performance, con 397,5 mil visualizaciones" width="560" height="880" loading="lazy" decoding="async"></div>
             <figcaption><b class="rc-views">397,5K <small>visualizaciones</small></b><span class="rc-who">VDN Performance</span></figcaption>
           </figure>
           <figure class="result-card">
-            <div class="rc-media"><img src="./assets/img/results/tatuajes-zonas.webp" alt="Reel “Las zonas que más duelen al tatuarte”, con 164 mil visualizaciones" width="280" height="440" loading="lazy" decoding="async"></div>
+            <div class="rc-media"><img src="./assets/img/results/tatuajes-zonas.webp" srcset="./assets/img/results/tatuajes-zonas-300.webp 300w, ./assets/img/results/tatuajes-zonas.webp 560w" sizes="(max-width: 640px) 44vw, (max-width: 1024px) 30vw, 250px" alt="Reel “Las zonas que más duelen al tatuarte”, con 164 mil visualizaciones" width="560" height="880" loading="lazy" decoding="async"></div>
             <figcaption><b class="rc-views">164K <small>visualizaciones</small></b><span class="rc-who">Estudio de tatuajes</span></figcaption>
           </figure>
           <figure class="result-card">
-            <div class="rc-media"><img src="./assets/img/results/vdn-top-coches-5000.webp" alt="Reel “Top 3 coches por menos de 5.000 €” de VDN Performance, con 301,3 mil visualizaciones" width="280" height="440" loading="lazy" decoding="async"></div>
+            <div class="rc-media"><img src="./assets/img/results/vdn-top-coches-5000.webp" srcset="./assets/img/results/vdn-top-coches-5000-300.webp 300w, ./assets/img/results/vdn-top-coches-5000.webp 560w" sizes="(max-width: 640px) 44vw, (max-width: 1024px) 30vw, 250px" alt="Reel “Top 3 coches por menos de 5.000 €” de VDN Performance, con 301,3 mil visualizaciones" width="560" height="880" loading="lazy" decoding="async"></div>
             <figcaption><b class="rc-views">301,3K <small>visualizaciones</small></b><span class="rc-who">VDN Performance</span></figcaption>
           </figure>
           <figure class="result-card">
-            <div class="rc-media"><img src="./assets/img/results/detailing-creador.webp" alt="Reel de presentación de un estudio de detailing, con 97,5 mil visualizaciones" width="280" height="440" loading="lazy" decoding="async"></div>
+            <div class="rc-media"><img src="./assets/img/results/detailing-creador.webp" srcset="./assets/img/results/detailing-creador-300.webp 300w, ./assets/img/results/detailing-creador.webp 560w" sizes="(max-width: 640px) 44vw, (max-width: 1024px) 30vw, 250px" alt="Reel de presentación de un estudio de detailing, con 97,5 mil visualizaciones" width="560" height="880" loading="lazy" decoding="async"></div>
             <figcaption><b class="rc-views">97,5K <small>visualizaciones</small></b><span class="rc-who">Wash & Go Detailing</span></figcaption>
           </figure>
           <figure class="result-card">
-            <div class="rc-media"><img src="./assets/img/results/vdn-reprogramar.webp" alt="Reel “No reprogrames sin saber esto” de VDN Performance, con 111,2 mil visualizaciones" width="280" height="440" loading="lazy" decoding="async"></div>
+            <div class="rc-media"><img src="./assets/img/results/vdn-reprogramar.webp" srcset="./assets/img/results/vdn-reprogramar-300.webp 300w, ./assets/img/results/vdn-reprogramar.webp 560w" sizes="(max-width: 640px) 44vw, (max-width: 1024px) 30vw, 250px" alt="Reel “No reprogrames sin saber esto” de VDN Performance, con 111,2 mil visualizaciones" width="560" height="880" loading="lazy" decoding="async"></div>
             <figcaption><b class="rc-views">111,2K <small>visualizaciones</small></b><span class="rc-who">VDN Performance</span></figcaption>
           </figure>
           <figure class="result-card">
-            <div class="rc-media"><img src="./assets/img/results/detailing-volvo.webp" alt="Reel “POV: Volvo XC40” de un estudio de detailing, con 47,2 mil visualizaciones" width="280" height="440" loading="lazy" decoding="async"></div>
+            <div class="rc-media"><img src="./assets/img/results/detailing-volvo.webp" srcset="./assets/img/results/detailing-volvo-300.webp 300w, ./assets/img/results/detailing-volvo.webp 560w" sizes="(max-width: 640px) 44vw, (max-width: 1024px) 30vw, 250px" alt="Reel “POV: Volvo XC40” de un estudio de detailing, con 47,2 mil visualizaciones" width="560" height="880" loading="lazy" decoding="async"></div>
             <figcaption><b class="rc-views">47,2K <small>visualizaciones</small></b><span class="rc-who">Wash & Go Detailing</span></figcaption>
           </figure>
           <figure class="result-card">
-            <div class="rc-media"><img src="./assets/img/results/vdn-bmw.webp" alt="Reel de VDN Performance con un BMW, con 73,2 mil visualizaciones" width="280" height="440" loading="lazy" decoding="async"></div>
+            <div class="rc-media"><img src="./assets/img/results/vdn-bmw.webp" srcset="./assets/img/results/vdn-bmw-300.webp 300w, ./assets/img/results/vdn-bmw.webp 560w" sizes="(max-width: 640px) 44vw, (max-width: 1024px) 30vw, 250px" alt="Reel de VDN Performance con un BMW, con 73,2 mil visualizaciones" width="560" height="880" loading="lazy" decoding="async"></div>
             <figcaption><b class="rc-views">73,2K <small>visualizaciones</small></b><span class="rc-who">VDN Performance</span></figcaption>
           </figure>
           <figure class="result-card">
-            <div class="rc-media"><img src="./assets/img/results/psicologia-gloria.webp" alt="Reel “Mi abuela os presenta a Gloria” de una psicóloga, con 29,1 mil visualizaciones" width="280" height="440" loading="lazy" decoding="async"></div>
+            <div class="rc-media"><img src="./assets/img/results/psicologia-gloria.webp" srcset="./assets/img/results/psicologia-gloria-300.webp 300w, ./assets/img/results/psicologia-gloria.webp 560w" sizes="(max-width: 640px) 44vw, (max-width: 1024px) 30vw, 250px" alt="Reel “Mi abuela os presenta a Gloria” de una psicóloga, con 29,1 mil visualizaciones" width="560" height="880" loading="lazy" decoding="async"></div>
             <figcaption><b class="rc-views">29,1K <small>visualizaciones</small></b><span class="rc-who">Psicología</span></figcaption>
           </figure>
           <figure class="result-card">
-            <div class="rc-media"><img src="./assets/img/results/fisioterapia-hombro.webp" alt="Reel educativo de un fisioterapeuta sobre el hombro, con 28,9 mil visualizaciones" width="280" height="440" loading="lazy" decoding="async"></div>
+            <div class="rc-media"><img src="./assets/img/results/fisioterapia-hombro.webp" srcset="./assets/img/results/fisioterapia-hombro-300.webp 300w, ./assets/img/results/fisioterapia-hombro.webp 560w" sizes="(max-width: 640px) 44vw, (max-width: 1024px) 30vw, 250px" alt="Reel educativo de un fisioterapeuta sobre el hombro, con 28,9 mil visualizaciones" width="560" height="880" loading="lazy" decoding="async"></div>
             <figcaption><b class="rc-views">28,9K <small>visualizaciones</small></b><span class="rc-who">Fisioterapia</span></figcaption>
           </figure>
         </div>
@@ -188,7 +182,7 @@
               <h2 data-split>Más de 1.600 leads en menos de <em class="accent">30 días</em>.</h2>
               <p class="lead" data-reveal>Lanzamos sus campañas en Facebook e Instagram hace menos de un mes: anuncios en vídeo con gancho, segmentación afinada y optimización cada semana. El resultado, <strong>más de 1.600 leads</strong> y un teléfono que no para.</p>
               <div class="case-metrics" data-reveal-group>
-                <div class="case-metric"><b><span data-count-to="1600">0</span><sup>+</sup></b><span>leads captados con Meta Ads</span></div>
+                <div class="case-metric"><b><span data-count-to="1600">1.600</span><sup>+</sup></b><span>leads captados con Meta Ads</span></div>
                 <div class="case-metric"><b>&lt;30</b><span>días desde el lanzamiento</span></div>
                 <div class="case-metric"><b>883<sup>K</sup></b><span>visualizaciones en sus reels</span></div>
               </div>
@@ -200,7 +194,7 @@
             <div class="case-phones" data-reveal-group>
           <figure class="reel">
             <div class="reel-media">
-              <video data-reel src="./assets/video/vdn-reprogramacion.mp4" poster="./assets/video/vdn-reprogramacion.webp" muted loop playsinline controls preload="none" width="540" height="960" aria-label="Anuncio de captación" data-cursor-label="Sonido ♪"></video>
+              <video data-reel data-poster="./assets/video/vdn-reprogramacion.webp" muted loop playsinline controls preload="none" width="540" height="960" aria-label="Anuncio de captación" data-cursor-label="Sonido ♪"><source src="./assets/video/vdn-reprogramacion.mp4" type="video/mp4"></video>
               <span class="reel-badge">Anuncio</span>
               <button class="reel-sound" type="button" aria-pressed="false" aria-label="Activar sonido"><svg class="off" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m22 9-6 6m0-6 6 6"/></svg><svg class="on" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
             </div>
@@ -208,7 +202,7 @@
           </figure>
           <figure class="reel">
             <div class="reel-media">
-              <video data-reel src="./assets/video/vdn-top-coches.mp4" poster="./assets/video/vdn-top-coches.webp" muted loop playsinline controls preload="none" width="540" height="960" aria-label="Top 3 coches" data-cursor-label="Sonido ♪"></video>
+              <video data-reel data-poster="./assets/video/vdn-top-coches.webp" muted loop playsinline controls preload="none" width="540" height="960" aria-label="Top 3 coches" data-cursor-label="Sonido ♪"><source src="./assets/video/vdn-top-coches.mp4" type="video/mp4"></video>
               <span class="reel-badge">Reel</span>
               <button class="reel-sound" type="button" aria-pressed="false" aria-label="Activar sonido"><svg class="off" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m22 9-6 6m0-6 6 6"/></svg><svg class="on" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
             </div>
@@ -229,12 +223,12 @@
             <h2 data-split>Vídeos que se ven <em class="accent">hasta el final</em>.</h2>
             <p class="lead" data-reveal>Ritmo, subtítulos dinámicos, ganchos en los primeros segundos y un acabado que se nota. Editamos reels, TikToks, anuncios, vídeos de YouTube y podcasts. Activa el sonido: así editamos.</p>
           </div>
-          <div class="big-number" data-reveal><b><span data-count-to="300">0</span><sup>+</sup></b><span>vídeos editados</span></div>
+          <div class="big-number" data-reveal><b><span data-count-to="300">300</span><sup>+</sup></b><span>vídeos editados</span></div>
         </div>
         <div class="reels-grid is-scroll" data-reveal-group>
           <figure class="reel">
             <div class="reel-media">
-              <video data-reel src="./assets/video/reel-entrenador.mp4" poster="./assets/video/reel-entrenador.webp" muted loop playsinline controls preload="none" width="540" height="960" aria-label="Entrenador personal" data-cursor-label="Sonido ♪"></video>
+              <video data-reel data-poster="./assets/video/reel-entrenador.webp" muted loop playsinline controls preload="none" width="540" height="960" aria-label="Entrenador personal" data-cursor-label="Sonido ♪"><source src="./assets/video/reel-entrenador.mp4" type="video/mp4"></video>
               <span class="reel-badge">Reel</span>
               <button class="reel-sound" type="button" aria-pressed="false" aria-label="Activar sonido"><svg class="off" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m22 9-6 6m0-6 6 6"/></svg><svg class="on" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
             </div>
@@ -242,7 +236,7 @@
           </figure>
           <figure class="reel">
             <div class="reel-media">
-              <video data-reel src="./assets/video/reel-fisioterapia.mp4" poster="./assets/video/reel-fisioterapia.webp" muted loop playsinline controls preload="none" width="540" height="960" aria-label="Fisioterapia deportiva" data-cursor-label="Sonido ♪"></video>
+              <video data-reel data-poster="./assets/video/reel-fisioterapia.webp" muted loop playsinline controls preload="none" width="540" height="960" aria-label="Fisioterapia deportiva" data-cursor-label="Sonido ♪"><source src="./assets/video/reel-fisioterapia.mp4" type="video/mp4"></video>
               <span class="reel-badge">Reel</span>
               <button class="reel-sound" type="button" aria-pressed="false" aria-label="Activar sonido"><svg class="off" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m22 9-6 6m0-6 6 6"/></svg><svg class="on" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
             </div>
@@ -250,7 +244,7 @@
           </figure>
           <figure class="reel">
             <div class="reel-media">
-              <video data-reel src="./assets/video/reel-instagram-musica.mp4" poster="./assets/video/reel-instagram-musica.webp" muted loop playsinline controls preload="none" width="540" height="960" aria-label="Trucos de Instagram" data-cursor-label="Sonido ♪"></video>
+              <video data-reel data-poster="./assets/video/reel-instagram-musica.webp" muted loop playsinline controls preload="none" width="540" height="960" aria-label="Trucos de Instagram" data-cursor-label="Sonido ♪"><source src="./assets/video/reel-instagram-musica.mp4" type="video/mp4"></video>
               <span class="reel-badge">Reel</span>
               <button class="reel-sound" type="button" aria-pressed="false" aria-label="Activar sonido"><svg class="off" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m22 9-6 6m0-6 6 6"/></svg><svg class="on" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
             </div>
@@ -258,7 +252,7 @@
           </figure>
           <figure class="reel">
             <div class="reel-media">
-              <video data-reel src="./assets/video/reel-perfil-seo.mp4" poster="./assets/video/reel-perfil-seo.webp" muted loop playsinline controls preload="none" width="540" height="960" aria-label="SEO para tu perfil" data-cursor-label="Sonido ♪"></video>
+              <video data-reel data-poster="./assets/video/reel-perfil-seo.webp" muted loop playsinline controls preload="none" width="540" height="960" aria-label="SEO para tu perfil" data-cursor-label="Sonido ♪"><source src="./assets/video/reel-perfil-seo.mp4" type="video/mp4"></video>
               <span class="reel-badge">Reel</span>
               <button class="reel-sound" type="button" aria-pressed="false" aria-label="Activar sonido"><svg class="off" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m22 9-6 6m0-6 6 6"/></svg><svg class="on" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
             </div>
@@ -346,10 +340,10 @@
           <a class="frame duo" data-tilt="5" href="https://www.marampsicologia.com/" target="_blank" rel="noopener" data-cursor-label="Visitar web ↗" aria-label="Visitar Maram Psicología (se abre en pestaña nueva)">
             <span class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">marampsicologia.com</span></span>
             <span class="frame-view">
-              <img class="tall" src="./assets/img/work/marampsicologia-tall.webp" alt="Captura de la web Maram Psicología" loading="lazy" decoding="async" width="1100" height="1834">
+              <img class="tall" src="./assets/img/work/marampsicologia-tall.webp" srcset="./assets/img/work/marampsicologia-tall-720.webp 720w, ./assets/img/work/marampsicologia-tall.webp 1100w" sizes="(max-width: 1024px) 92vw, 600px" alt="Captura de la web Maram Psicología" loading="lazy" decoding="async" width="1100" height="1834">
               <span class="glare" aria-hidden="true"></span>
             </span>
-            <span class="duo-mobile" aria-hidden="true"><img src="./assets/img/work/marampsicologia-mobile.webp" alt="Versión móvil de la web Maram Psicología" loading="lazy" decoding="async" width="780" height="1687"></span>
+            <span class="duo-mobile" aria-hidden="true"><img src="./assets/img/work/marampsicologia-mobile.webp" srcset="./assets/img/work/marampsicologia-mobile-400.webp 400w, ./assets/img/work/marampsicologia-mobile.webp 780w" sizes="220px" alt="Versión móvil de la web Maram Psicología" loading="lazy" decoding="async" width="780" height="1687"></span>
           </a>
         </div>
         <div class="work-info" data-reveal>
@@ -366,10 +360,10 @@
           <a class="frame duo" data-tilt="5" href="https://alexzsurzs.com/" target="_blank" rel="noopener" data-cursor-label="Visitar web ↗" aria-label="Visitar Alex Zsurzs · Z Solutions (se abre en pestaña nueva)">
             <span class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">alexzsurzs.com</span></span>
             <span class="frame-view">
-              <img class="tall" src="./assets/img/work/alexzsurzs-tall.webp" alt="Captura de la web Alex Zsurzs · Z Solutions" loading="lazy" decoding="async" width="1100" height="1834">
+              <img class="tall" src="./assets/img/work/alexzsurzs-tall.webp" srcset="./assets/img/work/alexzsurzs-tall-720.webp 720w, ./assets/img/work/alexzsurzs-tall.webp 1100w" sizes="(max-width: 1024px) 92vw, 600px" alt="Captura de la web Alex Zsurzs · Z Solutions" loading="lazy" decoding="async" width="1100" height="1834">
               <span class="glare" aria-hidden="true"></span>
             </span>
-            <span class="duo-mobile" aria-hidden="true"><img src="./assets/img/work/alexzsurzs-mobile.webp" alt="Versión móvil de la web Alex Zsurzs · Z Solutions" loading="lazy" decoding="async" width="780" height="1687"></span>
+            <span class="duo-mobile" aria-hidden="true"><img src="./assets/img/work/alexzsurzs-mobile.webp" srcset="./assets/img/work/alexzsurzs-mobile-400.webp 400w, ./assets/img/work/alexzsurzs-mobile.webp 780w" sizes="220px" alt="Versión móvil de la web Alex Zsurzs · Z Solutions" loading="lazy" decoding="async" width="780" height="1687"></span>
           </a>
         </div>
         <div class="work-info" data-reveal>
@@ -386,10 +380,10 @@
           <a class="frame duo" data-tilt="5" href="https://elitephysiomarbella.com/" target="_blank" rel="noopener" data-cursor-label="Visitar web ↗" aria-label="Visitar Elite Physio Marbella (se abre en pestaña nueva)">
             <span class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">elitephysiomarbella.com</span></span>
             <span class="frame-view">
-              <img class="tall" src="./assets/img/work/elitephysio-tall.webp" alt="Captura de la web Elite Physio Marbella" loading="lazy" decoding="async" width="1100" height="1834">
+              <img class="tall" src="./assets/img/work/elitephysio-tall.webp" srcset="./assets/img/work/elitephysio-tall-720.webp 720w, ./assets/img/work/elitephysio-tall.webp 1100w" sizes="(max-width: 1024px) 92vw, 600px" alt="Captura de la web Elite Physio Marbella" loading="lazy" decoding="async" width="1100" height="1834">
               <span class="glare" aria-hidden="true"></span>
             </span>
-            <span class="duo-mobile" aria-hidden="true"><img src="./assets/img/work/elitephysio-mobile.webp" alt="Versión móvil de la web Elite Physio Marbella" loading="lazy" decoding="async" width="780" height="1687"></span>
+            <span class="duo-mobile" aria-hidden="true"><img src="./assets/img/work/elitephysio-mobile.webp" srcset="./assets/img/work/elitephysio-mobile-400.webp 400w, ./assets/img/work/elitephysio-mobile.webp 780w" sizes="220px" alt="Versión móvil de la web Elite Physio Marbella" loading="lazy" decoding="async" width="780" height="1687"></span>
           </a>
         </div>
         <div class="work-info" data-reveal>
@@ -406,10 +400,10 @@
           <a class="frame duo" data-tilt="5" href="https://dls-detailing.com/" target="_blank" rel="noopener" data-cursor-label="Visitar web ↗" aria-label="Visitar DLS Detailing (se abre en pestaña nueva)">
             <span class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">dls-detailing.com</span></span>
             <span class="frame-view">
-              <img class="tall" src="./assets/img/work/dls-detailing-tall.webp" alt="Captura de la web DLS Detailing" loading="lazy" decoding="async" width="1100" height="1834">
+              <img class="tall" src="./assets/img/work/dls-detailing-tall.webp" srcset="./assets/img/work/dls-detailing-tall-720.webp 720w, ./assets/img/work/dls-detailing-tall.webp 1100w" sizes="(max-width: 1024px) 92vw, 600px" alt="Captura de la web DLS Detailing" loading="lazy" decoding="async" width="1100" height="1834">
               <span class="glare" aria-hidden="true"></span>
             </span>
-            <span class="duo-mobile" aria-hidden="true"><img src="./assets/img/work/dls-detailing-mobile.webp" alt="Versión móvil de la web DLS Detailing" loading="lazy" decoding="async" width="780" height="1687"></span>
+            <span class="duo-mobile" aria-hidden="true"><img src="./assets/img/work/dls-detailing-mobile.webp" srcset="./assets/img/work/dls-detailing-mobile-400.webp 400w, ./assets/img/work/dls-detailing-mobile.webp 780w" sizes="220px" alt="Versión móvil de la web DLS Detailing" loading="lazy" decoding="async" width="780" height="1687"></span>
           </a>
         </div>
         <div class="work-info" data-reveal>
@@ -455,10 +449,10 @@
     <section class="section section-tight" aria-labelledby="titulo-testimonios">
       <div class="container">
         <div class="stats" data-reveal>
-          <div class="stat"><b><span data-count-to="20">0</span><sup>+</sup></b><span>clientes gestionados en redes</span></div>
-          <div class="stat"><b><span data-count-to="1600">0</span><sup>+</sup></b><span>leads con Meta Ads en &lt;30 días</span></div>
-          <div class="stat"><b><span data-count-to="300">0</span><sup>+</sup></b><span>vídeos editados: reels, YouTube y podcasts</span></div>
-          <div class="stat"><b><span data-count-to="30">0</span><sup>+</sup></b><span>webs diseñadas y lanzadas</span></div>
+          <div class="stat"><b><span data-count-to="20">20</span><sup>+</sup></b><span>clientes gestionados en redes</span></div>
+          <div class="stat"><b><span data-count-to="1600">1.600</span><sup>+</sup></b><span>leads con Meta Ads en &lt;30 días</span></div>
+          <div class="stat"><b><span data-count-to="300">300</span><sup>+</sup></b><span>vídeos editados: reels, YouTube y podcasts</span></div>
+          <div class="stat"><b><span data-count-to="30">30</span><sup>+</sup></b><span>webs diseñadas y lanzadas</span></div>
         </div>
         <div class="section-head center" style="margin-top: var(--s-5)">
           <p class="eyebrow" data-reveal>Testimonios</p>

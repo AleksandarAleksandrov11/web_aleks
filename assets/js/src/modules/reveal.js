@@ -80,7 +80,7 @@ export function initReveal() {
   runCounters(false);
 }
 
-/* Contadores animados: <b data-count-to="30">0</b> */
+/* Contadores animados: <b data-count-to="30">30</b> */
 function runCounters(instant) {
   const els = document.querySelectorAll('[data-count-to]');
   if (!els.length) return;
@@ -106,5 +106,11 @@ function runCounters(instant) {
       io.unobserve(e.target);
     }
   }, { threshold: 0.6 });
-  els.forEach((el) => (instant ? animate(el) : io.observe(el)));
+  // El HTML trae ya la cifra final (sin JS o para buscadores); aquí se pone
+  // a 0 justo antes de animarla al entrar en pantalla.
+  els.forEach((el) => {
+    if (instant) { animate(el); return; }
+    el.textContent = '0';
+    io.observe(el);
+  });
 }

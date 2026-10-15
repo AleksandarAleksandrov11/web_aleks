@@ -1,6 +1,6 @@
 /* Scroll: suavizado de rueda (solo puntero fino), parallax, estado del
    header, botón flotante de WhatsApp y progreso de la línea del proceso. */
-import { clamp, lerp, ticker, prefersReduced, isFinePointer } from './utils.js';
+import { clamp, lerp, prefersReduced, isFinePointer } from './utils.js';
 
 export function initScroll() {
   const nav = document.querySelector('.nav');
@@ -77,10 +77,17 @@ export function initScroll() {
   // La pista de WhatsApp también aparece pronto en páginas cortas
   if (wa && document.documentElement.scrollHeight <= innerHeight * 1.4) wa.classList.add('is-on');
 
-  /* --- Parallax sutil (expone --py; el elemento decide cómo componerlo) --- */
-  if (!prefersReduced && parallaxEls.length) {
-    ticker.add(() => {
-      const vh = innerHeight;
+  /* --- Efectos ligados a la posición: parallax sutil (expone --py; el
+     elemento decide cómo componerlo) y progreso de la línea del proceso.
+     Solo se recalculan cuando hay scroll o resize (un rAF por evento), nunca
+     en un bucle continuo: así el hilo principal queda libre en reposo. --- */
+  const parallaxOn = !prefersReduced && parallaxEls.length && isFinePointer;
+  const items = steps ? [...steps.querySelectorAll('.step')] : [];
+  if (!parallaxOn && !steps) return;
+
+  function updatePositional() {
+    const vh = innerHeight;
+    if (parallaxOn) {
       for (const el of parallaxEls) {
         const r = el.getBoundingClientRect();
         if (r.bottom < -80 || r.top > vh + 80) continue;
@@ -88,21 +95,26 @@ export function initScroll() {
         const speed = parseFloat(el.dataset.parallax || '0.1');
         el.style.setProperty('--py', `${(-center * speed * 100).toFixed(2)}px`);
       }
-    });
-  }
-
-  /* --- Progreso de la línea del proceso --- */
-  if (steps) {
-    const items = [...steps.querySelectorAll('.step')];
-    ticker.add(() => {
+    }
+    if (steps) {
       const r = steps.getBoundingClientRect();
-      const total = r.height - innerHeight * 0.5;
-      const p = clamp((innerHeight * 0.6 - r.top) / Math.max(total, 1), 0, 1);
-      steps.style.setProperty('--p', p.toFixed(4));
-      for (const it of items) {
-        const ir = it.getBoundingClientRect();
-        it.classList.toggle('is-active', ir.top < innerHeight * 0.6 && ir.bottom > innerHeight * 0.25);
+      if (r.bottom > -vh && r.top < vh * 2) {
+        const total = r.height - vh * 0.5;
+        const p = clamp((vh * 0.6 - r.top) / Math.max(total, 1), 0, 1);
+        steps.style.setProperty('--p', p.toFixed(4));
+        for (const it of items) {
+          const ir = it.getBoundingClientRect();
+          it.classList.toggle('is-active', ir.top < vh * 0.6 && ir.bottom > vh * 0.25);
+        }
       }
-    });
+    }
+    posTicking = false;
   }
+  let posTicking = false;
+  const requestPositional = () => {
+    if (!posTicking) { posTicking = true; requestAnimationFrame(updatePositional); }
+  };
+  window.addEventListener('scroll', requestPositional, { passive: true });
+  window.addEventListener('resize', requestPositional, { passive: true });
+  requestPositional();
 }

@@ -2,11 +2,12 @@
    y se aparta suavemente del cursor. Se pausa fuera de pantalla y, en
    equipos modestos, usa una retícula más espaciada (menos puntos, menos
    trabajo por frame) en vez de desaparecer del todo. */
-import { ticker, prefersReduced, isLowPower } from './utils.js';
+import { ticker, prefersReduced, isLowPower, isFinePointer } from './utils.js';
 
 export function initHeroCanvas() {
   const canvas = document.querySelector('.hero-canvas');
-  if (!canvas || prefersReduced) return;
+  // En táctil no hay cursor al que reaccionar: se ahorra el bucle de dibujo
+  if (!canvas || prefersReduced || !isFinePointer) return;
 
   const ctx = canvas.getContext('2d');
   const dpr = Math.min(window.devicePixelRatio || 1, isLowPower ? 1.5 : 2);

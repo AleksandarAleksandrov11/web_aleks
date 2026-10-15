@@ -48,17 +48,11 @@ export function initConsent() {
     decide(btn.dataset.ck === 'accept' ? 'accepted' : 'rejected');
   });
 
-  // Aparece cuando la intro ha terminado (o poco después), sin bloquear el LCP
+  // Aparece poco después de la carga, sin tapar el primer pintado (LCP)
   const reveal = () => {
     banner.hidden = false;
     document.body.classList.add('cookie-open');
     requestAnimationFrame(() => banner.classList.add('is-visible'));
   };
-  if (document.documentElement.classList.contains('intro-done')) {
-    setTimeout(reveal, 600);
-  } else {
-    window.addEventListener('intro:done', () => setTimeout(reveal, 400), { once: true });
-    // Salvaguarda por si no hay intro
-    setTimeout(() => { if (banner.hidden) reveal(); }, 4200);
-  }
+  setTimeout(reveal, 1200);
 }
