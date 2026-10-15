@@ -22,6 +22,7 @@ const [
   { initConsent },
   { initMarqueeClones },
   { initTestimonials },
+  { initReels },
 ] = await Promise.all([
   load('loader'),
   load('theme'),
@@ -37,6 +38,7 @@ const [
   load('consent'),
   load('marqueeClone'),
   load('testimonials'),
+  load('reels'),
 ]);
 
 initLoader();
@@ -53,3 +55,4 @@ initMisc();
 initConsent();
 initMarqueeClones();
 initTestimonials();
+initReels();

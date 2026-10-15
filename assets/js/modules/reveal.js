@@ -84,15 +84,17 @@ export function initReveal() {
 function runCounters(instant) {
   const els = document.querySelectorAll('[data-count-to]');
   if (!els.length) return;
+  // Separador de miles a la española también en cifras de 4 dígitos (1.600)
+  const fmt = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   const animate = (el) => {
     const to = parseFloat(el.dataset.countTo);
-    if (instant) { el.textContent = to; return; }
+    if (instant) { el.textContent = fmt(to); return; }
     const dur = 1600;
     const t0 = performance.now();
     const ease = (t) => 1 - Math.pow(1 - t, 4);
     const step = (now) => {
       const p = Math.min((now - t0) / dur, 1);
-      el.textContent = Math.round(to * ease(p));
+      el.textContent = fmt(Math.round(to * ease(p)));
       if (p < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
