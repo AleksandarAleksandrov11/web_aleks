@@ -16,7 +16,7 @@ export function initTestimonials() {
 
   const read = (el) => {
     const cap = el.querySelector('figcaption');
-    const strong = cap?.querySelector('strong');
+    const strong = cap?.querySelector('.t-name, strong');
     return {
       quote: el.querySelector('blockquote')?.textContent.trim() || '',
       name: strong?.textContent.trim() || '',
