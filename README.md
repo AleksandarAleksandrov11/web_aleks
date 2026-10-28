@@ -16,7 +16,6 @@ estático (Netlify, Cloudflare Pages, GitHub Pages, cPanel…).
 ├── proceso/                    Proceso de trabajo en 6 fases (línea temporal)
 ├── agencia/                    Sobre la agencia (identidad, valores, cómo trabaja)
 ├── faq/                        Preguntas frecuentes (con schema FAQPage)
-├── blog/                       “Ideas” — preparado para el futuro (noindex)
 ├── contacto/                   Formulario validado + WhatsApp + email
 ├── privacidad/ · cookies/ · aviso-legal/   Textos legales (LSSI-CE + RGPD)
 ├── 404.html
@@ -68,8 +67,6 @@ Vercel (pestaña *Analytics* / *Speed Insights* del proyecto). El sitio carga
   [@aas_webmarketing](https://www.instagram.com/aas_webmarketing/) y a
   [TikTok](https://www.tiktok.com/@aas_webmarketing). Son tarjetas de “seguir”,
   no requieren contenido adicional.
-- **Portadas del blog**: placeholders `ph-media` en `blog/` (el blog está
-  marcado `noindex` hasta que haya artículos).
 
 > La web es de la **agencia**: los datos personales del titular solo aparecen
 > en el pie legal, como exige la LSSI-CE, no en el contenido visible.

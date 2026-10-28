@@ -1,6 +1,6 @@
 # AAS Marketing · robots.txt
 # Queremos aparecer en buscadores y en respuestas de IA: todo el contenido
-# público es rastreable. Las páginas legales y el blog llevan noindex en su HTML.
+# público es rastreable. Las páginas legales llevan noindex en su HTML.
 
 # Buscadores
 User-agent: Googlebot

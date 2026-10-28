@@ -19,7 +19,7 @@
    15. Instagram + about
    16. Formulario de contacto
    17. Footer + WhatsApp flotante
-   18. Páginas legales / blog / 404
+   18. Páginas legales / 404
    19. Reveals + utilidades de motion
    20. Responsive + reduced motion
    ============================================================ */
@@ -2221,7 +2221,6 @@ em.accent { font-size: 1.04em; }
 .prose strong { color: var(--ink-soft); }
 .prose a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 
-.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2vw, 1.75rem); }
 .post-card {
   border-radius: var(--r-m);
   border: 1px solid var(--line);
@@ -2374,7 +2373,7 @@ em.accent { font-size: 1.04em; }
 }
 
 @media (max-width: 640px) {
-  .grid-2, .grid-3, .work-grid, .blog-grid, .contact-alts { grid-template-columns: 1fr; }
+  .grid-2, .grid-3, .work-grid, .contact-alts { grid-template-columns: 1fr; }
   .bento-cell, .bento-cell.is-wide { grid-column: span 12; min-height: 260px; }
   .hero h1 { font-size: clamp(2.7rem, 12vw, 4rem); max-width: 18ch; }
   .hero-stage { aspect-ratio: 4 / 3; }
