@@ -1,4 +1,32 @@
+# AAS Marketing · robots.txt
+# Queremos aparecer en buscadores y en respuestas de IA: todo el contenido
+# público es rastreable. Las páginas legales y el blog llevan noindex en su HTML.
+
+# Buscadores
+User-agent: Googlebot
+User-agent: Bingbot
+Allow: /
+
+# Buscadores y asistentes de IA (citas en respuestas)
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+
+# Entrenamiento de modelos de IA
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+
 User-agent: *
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 
 Sitemap: https://www.aasmarketing.com/sitemap.xml
